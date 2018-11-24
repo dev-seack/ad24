@@ -25,4 +25,8 @@
     "nodemailer": "^4.7.0",
     "stylus": "^0.54.5"
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> refs/remotes/origin/master
