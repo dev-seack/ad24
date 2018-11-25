@@ -42,6 +42,9 @@ app.get("/", (req, res) => {
 
 app.get("/nsend", (req, res) => {
   const email = req.query.email; // get form information
+  const type = req.query.type; // get user type
+
+  //return console.log(type, email);
 
   if (!validator.isEmail(email))
     return res.status(500).send("Keine gültige elektronische Postadresse");
@@ -61,11 +64,11 @@ app.get("/nsend", (req, res) => {
 
   // setup email data with unicode symbols
   let mailOptions = {
-    from: `"Newsletter" <${config.absender}>`, // sender address
+    from: `"Newsletter" <${config.absender}> - ${type}`, // sender address
     to: config.empfaenger, // list of receivers
     subject: config.betreff, // Subject line
-    text: `<p>Ein Benutzer hat sich angemeldet.</p><p>Erreiche ihn unter: ${email}</p>`,
-    html: `<p>Ein Benutzer hat sich angemeldet.</p><p>Erreiche ihn unter: ${email}</p>`
+    text: `Ein Benutzer (${type}) hat sich angemeldet. Erreiche ihn unter: ${email}`,
+    html: `<p>Ein Benutzer <b>(${type})</b> hat sich angemeldet.</p><p>Erreiche ihn unter: ${email}</p>`
   };
 
   // send mail with defined transport object
