@@ -1,8 +1,0 @@
-{
-  "host": "smtp.strato.de",
-  "port": "587",
-  "absender": "test@ts-dm.de",
-  "passwort": "XMkFd9bvnPH63s6",
-  "empfaenger": "seack@ts-dm.de, itreptau@gmx.de",
-  "betreff": "Newsletter"
-}
