@@ -2,8 +2,10 @@ html
     head
         title My Site - #{title}
         block script
-            
-        
+            script(src="/js/jquery.js")
+            script(src="/js/main.js")
+            script(src="/js/iziToast.min.js")
+            link(href="/css/izitoast.min.css" rel="stylesheet")
     body
         block content
         block footer
