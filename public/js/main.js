@@ -1,23 +1,25 @@
 $(function() {
   $(".newsletter-form").submit(function(e) {
     e.preventDefault();
-    var form = $(this);
-    var submitBtn = form.find("button");
-    var emailInput = form.find("input[type=email]");
+    const delay = 5000;
+    const form = $(this);
+    const submitBtn = form.find("button");
+    const emailInput = form.find("input[type=email]");
     // ajax
     $.get("/nsend", form.serialize())
       // success
       .done(function() {
-        // add class to form
+        // disable input
         form.addClass("email-sent");
         submitBtn.addClass("disabled");
         submitBtn.prop("disabled", true);
         emailInput.val("");
         setTimeout(function() {
+          // enable input
           submitBtn.removeClass("disabled");
           submitBtn.prop("disabled", false);
           form.removeClass("email-sent");
-        }, 5000);
+        }, delay);
         // clean input value
 
         // toast - success
