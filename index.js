@@ -14,8 +14,6 @@ const PORT = 3000;
 // config
 const config = require("./config.json");
 
-//test
-
 const app = express();
 
 // set view engine
