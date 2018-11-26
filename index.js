@@ -54,8 +54,8 @@ app.get("/nsend", (req, res) => {
     port: config.port,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: config.absender, // generated ethereal user
-      pass: config.passwort // generated ethereal password
+      user: config.absender,
+      pass: config.passwort
     },
     tls: {
       rejectUnauthorized: false // just for local environment
