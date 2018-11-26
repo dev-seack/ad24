@@ -8,8 +8,6 @@ const nib = require("nib");
 const stylus = require("stylus");
 const validator = require("validator");
 
-// hallo
-
 // port
 const PORT = 3000;
 
