@@ -39,7 +39,7 @@ class Person {
 
       console.log(fetch_url, newPerson.data, newPerson.data > 0);
 
-      return newPerson.length > 0;
+      return newPerson.data.length > 0;
     } catch (e) {
       console.log(e);
     }
