@@ -15,15 +15,13 @@ PERSON IS MAINLY JUST AN OBJECT TO SAVE THE ID AND ATTACHMENTS LIKE PROJECT_ID O
   - attach Persons ID!!!
     "attachable_type": "Person",
     "attachable_id": 7485489
-
-  - eventaully create Project and/or Deal
 */
 
 const URLS = {
   ADD_PERSON: crm.BASE_URL + "people.json",
   SEARCH_PERSON: crm.BASE_URL + "contact_details/search.json",
-  ADD_COMPANY: crm.BASE_URL + "company.json",
-  SEARCH_COMPANY: crm.BASE_URL + "company/search.json",
+  ADD_COMPANY: crm.BASE_URL + "companies.json",
+  SEARCH_COMPANY: crm.BASE_URL + "contact_details/search.json",
   ADD_PROJECT: crm.BASE_URL + "project.json",
   SEARCH_PROJECT: crm.BASE_URL + "project/search.json"
 };
@@ -37,11 +35,14 @@ class Person {
 
   async addPerson(person) {
     try {
-      if (!this.isPersonExisting(person.email)) {
+      if (
+        await this.isPersonExisting(person.person.emails_attributes[0].name)
+      ) {
         return false;
       }
+
       const response = await axios.post(URLS.ADD_PERSON + API, person);
-      if (response.status == 200) {
+      if (response.status == 201) {
         return response.data;
       }
       return false;
@@ -52,10 +53,8 @@ class Person {
 
   async isPersonExisting(email) {
     try {
-      const fetch_url = URLS.SEARCH_PERSON + API + "&email=" + email;
+      const fetch_url = URLS.SEARCH_PERSON + API + "&type=people&name=" + email;
       const newPerson = await axios.get(fetch_url);
-
-      console.log(fetch_url, newPerson.data, newPerson.data > 0);
 
       return newPerson.data.length > 0;
     } catch (e) {
@@ -63,22 +62,44 @@ class Person {
     }
   }
 }
-/* jshint ignore:end */
 
-var Company = {
-  addCompany: () => {},
+class Company {
+  constructor() {}
 
-  isCompanyExisting: (email) => {}
-};
+  async addCompany(company) {
+    try {
+      if (
+        await this.isCompanyExisting(company.company.emails_attributes[0].name)
+      ) {
+        return false;
+      }
 
-var Project = {
-  addProject: () => {},
+      const response = await axios.post(URLS.ADD_COMPANY + API, company);
 
-  isProjectExisting: (email) => {}
-};
+      if (response.status == 201) {
+        return response.data;
+      }
+      return false;
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
+
+  async isCompanyExisting(email) {
+    try {
+      const fetch_url =
+        URLS.SEARCH_COMPANY + API + "&type=companies&name=" + email;
+      const newCompany = await axios.get(fetch_url);
+      return newCompany.data.filter((item) => item.company).length > 0;
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
+}
 
 module.exports = {
   Person,
-  Company,
-  Project
+  Company
 };
+
+/* jshint ignore:end */

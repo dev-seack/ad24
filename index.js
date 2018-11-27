@@ -8,7 +8,7 @@ const nib = require("nib");
 const stylus = require("stylus");
 const validator = require("validator");
 const centralstation = require("./modules/centralstation");
-const { Person, Company, Project } = require("./modules/centralstation");
+const { Person, Company } = require("./modules/centralstation");
 
 // port
 const PORT = 3000;
@@ -43,20 +43,84 @@ app.get("/", (req, res) => {
 });
 
 // register regular person
-app.get("/register", (req, res) => {
+app.get("/regperson", (req, res) => {
   const newPerson = {
-    first_name: "Marian",
-    name: "Miller",
-    email: "marian@miller.de"
+    person: {
+      first_name: "Marian",
+      name: "Miller",
+      emails_attributes: [
+        {
+          name: "marian@miller.de",
+          atype: "office"
+        }
+      ],
+      tels_attributes: [
+        {
+          name: "123456789",
+          atype: "office"
+        }
+      ],
+      tags_attributes: [
+        {
+          name: "Online"
+        },
+        {
+          name: "Privat"
+        }
+      ],
+      addrs_attributes: [
+        {
+          zip: "59192",
+          city: "Bergkamen"
+        }
+      ],
+      custom_fields_attributes: [
+        {
+          custom_fields_type_id: 1,
+          attachable_id: "",
+          attachable_type: "Person",
+          name: "Oberkategorie"
+        },
+        {
+          custom_fields_type_id: 2,
+          attachable_id: "",
+          attachable_type: "Person",
+          name: "Unterkategorie"
+        }
+      ]
+    }
   };
   var person = new Person();
   person
     .addPerson(newPerson)
     .then((p) => {
-      console.log(p);
+      res.send(JSON.stringify(p));
     })
     .catch((e) => {
-      console.log(e);
+      res.send(e);
+    });
+});
+
+app.get("/regcompany", (req, res) => {
+  const newCompany = {
+    company: {
+      name: "Miller AG",
+      emails_attributes: [
+        {
+          name: "marian@miller.de",
+          atype: "office"
+        }
+      ]
+    }
+  };
+  var company = new Company();
+  company
+    .addCompany(newCompany)
+    .then((p) => {
+      res.send(JSON.stringify(p));
+    })
+    .catch((e) => {
+      res.send(e);
     });
 });
 
