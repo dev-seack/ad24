@@ -50,7 +50,14 @@ app.get("/register", (req, res) => {
     email: "marian@miller.de"
   };
   var person = new Person();
-  person.addPerson(newPerson);
+  person
+    .addPerson(newPerson)
+    .then((p) => {
+      console.log(p);
+    })
+    .catch((e) => {
+      console.log(e);
+    });
 });
 
 app.get("/nsend", (req, res) => {
