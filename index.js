@@ -5,9 +5,14 @@ const path = require("path");
 const nodemailer = require("nodemailer");
 const excel = require("excel4node");
 const nib = require("nib");
-const stylus = require("stylus");
+const stylus = require("express-stylus");
 const validator = require("validator");
+
 const centralstation = require("./modules/centralstation");
+
+const join = require("path").join;
+const publicDir = join(__dirname, "/public");
+
 const { Person, Company } = require("./modules/centralstation");
 
 // port
@@ -26,17 +31,14 @@ app.set("view engine", "pug");
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
-app.use(express.static("public"));
-//stylus
 app.use(
-  stylus.middleware({
-    src: __dirname + "/public",
-    compile: (str, path) =>
-      stylus(str)
-        .set("filename", path)
-        .use(nib())
+  stylus({
+    src: publicDir + "/stylus",
+    use: [nib()],
+    import: ["nib"]
   })
 );
+app.use(express.static(publicDir));
 
 app.get("/", (req, res) => {
   res.render("index", { title: "Home" });
