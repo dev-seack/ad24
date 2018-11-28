@@ -16,7 +16,7 @@ const publicDir = join(__dirname, "/public");
 const { Person, Company } = require("./modules/centralstation");
 
 // port
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // config
 const config = require("./config.json");
