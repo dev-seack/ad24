@@ -1,16 +1,13 @@
 // packages
 const express = require("express");
 const bodyParser = require("body-parser");
-const path = require("path");
 const nodemailer = require("nodemailer");
+const join = require("path").join;
 const excel = require("excel4node");
 const nib = require("nib");
 const stylus = require("express-stylus");
 const validator = require("validator");
 
-const centralstation = require("./modules/centralstation");
-
-const join = require("path").join;
 const publicDir = join(__dirname, "/public");
 
 const { Person, Company } = require("./modules/centralstation");
