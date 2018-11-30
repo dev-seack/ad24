@@ -86,9 +86,13 @@ app.get("/regperson", (req, res) => {
   person
     .addPerson(person_template)
     .then((response) => {
-      res
-        .status(200)
-        .send({ Person: response.Person, Protocol: response.Protocol });
+      if (response.message !== undefined) {
+        res.status(404).send(response.message);
+      } else {
+        res
+          .status(200)
+          .send({ Person: response.Person, Protocol: response.Protocol });
+      }
     })
     .catch((e) => {
       res.send(e);
@@ -96,7 +100,7 @@ app.get("/regperson", (req, res) => {
 });
 
 app.get("/regcompany", (req, res) => {
-  const newCompany = {
+  const company_template = {
     company: {
       name: "Miller AG",
       emails_attributes: [
@@ -109,14 +113,24 @@ app.get("/regcompany", (req, res) => {
         {
           name: "Online"
         }
-      ]
+      ],
+      form_content: "Bilder Registrierung"
     }
   };
   var company = new Company();
   company
-    .addCompany(newCompany)
-    .then((p) => {
-      res.send(JSON.stringify(p));
+    .addCompany(company_template)
+    .then((response) => {
+      if (response.message !== undefined) {
+        res.status(404).send(response.message);
+      } else {
+        res
+          .status(200)
+          .send(
+            { Company: response.Company, Protocol: response.Protocol } ||
+              response
+          );
+      }
     })
     .catch((e) => {
       res.send(e);

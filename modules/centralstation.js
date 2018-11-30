@@ -79,14 +79,14 @@ class Person {
       if (
         await this.isPersonExisting(person.person.emails_attributes[0].name)
       ) {
-        return "Person already exists";
+        return new Error("Person already exists");
       }
 
       const response = await axios.post(URLS.ADD_PERSON + API, person);
 
       if (response.status === 201) {
         this.id = response.data.person.id;
-        // create custom response object
+        // create custom response object just for us
         var customResponse = new Array();
         customResponse["Person"] = response.data.person;
 
@@ -133,14 +133,34 @@ class Company {
       if (
         await this.isCompanyExisting(company.company.emails_attributes[0].name)
       ) {
-        return false;
+        return new Error("Company already exists");
       }
 
       const response = await axios.post(URLS.ADD_COMPANY + API, company);
 
       if (response.status === 201) {
         this.id = response.data.company.id;
-        return response.data;
+        // create custom response object just for us
+        var customResponse = new Array();
+        customResponse["Company"] = response.data.company;
+
+        // create attachments ...
+
+        // create new protocol for this company
+        const protocol = new Protocol(
+          company.company.form_content,
+          null,
+          this.id
+        ); // form_content directly out of form??? -> access inside protocol
+        return await protocol
+          .addProtocol()
+          .then((p) => {
+            customResponse["Protocol"] = p.protocol_object_note;
+            return customResponse;
+          })
+          .catch((e) => {
+            return e;
+          });
       }
       return false;
     } catch (e) {
