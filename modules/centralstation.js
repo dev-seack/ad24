@@ -28,21 +28,83 @@ const API = "?apikey=" + crm.API_KEY;
  */
 
 /* jshint ignore:start */
+class Protocol {
+  /**
+   * crm.BASE_URL + "/people/{person_id}/protocols.json" + API
+   * crm.BASE_URL + "/companies/{companies_id}/protocols.json" + API
+   */
+  constructor(content, person_id = null, company_id = null) {
+    this.person_id = person_id;
+    this.company_id = company_id;
+    this.content = content; // description from form
+
+    // company
+    if (this.person_id === null && this.company_id !== null) {
+      this.url =
+        crm.BASE_URL +
+        "/companies/" +
+        this.company_id +
+        "/protocols.json" +
+        API;
+    } else {
+      this.url =
+        crm.BASE_URL + "/people/" + this.person_id + "/protocols.json" + API;
+    }
+  }
+
+  async addProtocol() {
+    try {
+      const p = {
+        content: this.content
+      };
+      const response = await axios.post(this.url, p);
+
+      if (response.status === 201) {
+        return response.data;
+      }
+      return false;
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
+}
+
 class Person {
-  constructor() {}
+  constructor() {
+    this.id = null;
+  }
 
   async addPerson(person) {
     try {
       if (
         await this.isPersonExisting(person.person.emails_attributes[0].name)
       ) {
-        return false;
+        return "Person already exists";
       }
 
       const response = await axios.post(URLS.ADD_PERSON + API, person);
-      if (response.status == 201) {
-        return response.data;
+
+      if (response.status === 201) {
+        this.id = response.data.person.id;
+        // create custom response object
+        var customResponse = new Array();
+        customResponse["Person"] = response.data.person;
+
+        // create attachments ...
+
+        // create new protocol for this person
+        const protocol = new Protocol(person.person.form_content, this.id); // form_content directly out of form??? -> access inside protocol
+        return await protocol
+          .addProtocol()
+          .then((p) => {
+            customResponse["Protocol"] = p.protocol_object_note;
+            return customResponse;
+          })
+          .catch((e) => {
+            return e;
+          });
       }
+
       return false;
     } catch (e) {
       throw new Error(e);
@@ -62,7 +124,9 @@ class Person {
 }
 
 class Company {
-  constructor() {}
+  constructor() {
+    this.id = null;
+  }
 
   async addCompany(company) {
     try {
@@ -74,7 +138,8 @@ class Company {
 
       const response = await axios.post(URLS.ADD_COMPANY + API, company);
 
-      if (response.status == 201) {
+      if (response.status === 201) {
+        this.id = response.data.company.id;
         return response.data;
       }
       return false;

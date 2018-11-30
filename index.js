@@ -35,7 +35,7 @@ app.get("/", (req, res) => {
 
 // register regular person
 app.get("/regperson", (req, res) => {
-  const newPerson = {
+  const person_template = {
     person: {
       first_name: "Marian",
       name: "Miller",
@@ -78,14 +78,17 @@ app.get("/regperson", (req, res) => {
           attachable_type: "Person",
           name: "Unterkategorie"
         }
-      ]
+      ],
+      form_content: "this is a short description"
     }
   };
   var person = new Person();
   person
-    .addPerson(newPerson)
-    .then((p) => {
-      res.send(JSON.stringify(p));
+    .addPerson(person_template)
+    .then((response) => {
+      res
+        .status(200)
+        .send({ Person: response.Person, Protocol: response.Protocol });
     })
     .catch((e) => {
       res.send(e);
