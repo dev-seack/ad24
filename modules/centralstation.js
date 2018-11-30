@@ -1,4 +1,4 @@
-const crm = require("/config.json").crm;
+const crm = require("../config.json").crm;
 const axios = require("axios");
 
 const URLS = {
