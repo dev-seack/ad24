@@ -5,7 +5,6 @@ const nodemailer = require("nodemailer");
 const join = require("path").join;
 const excel = require("excel4node");
 const nib = require("nib");
-const stylus = require("express-stylus");
 const validator = require("validator");
 
 const publicDir = join(__dirname, "/public");
@@ -28,13 +27,6 @@ app.set("view engine", "pug");
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
-app.use(
-  stylus({
-    src: publicDir + "/stylus",
-    use: [nib()],
-    import: ["nib"]
-  })
-);
 app.use(express.static(publicDir));
 
 app.get("/", (req, res) => {
@@ -108,6 +100,11 @@ app.get("/regcompany", (req, res) => {
         {
           name: "marian@miller.de",
           atype: "office"
+        }
+      ],
+      tags_attributes: [
+        {
+          name: "Online"
         }
       ]
     }

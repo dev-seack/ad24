@@ -11,7 +11,21 @@ const URLS = {
 };
 
 const API = "?apikey=" + crm.API_KEY;
-const apikey = crm.API_KEY;
+
+// TODO:
+/** FOR PERSON AND COMPANY
+ * - Create Person/Company
+ * - save ID temporarily
+ * ------------------------
+ * - Create Protocol
+ * - save protocol_id temporarily
+ * - Create Attachment
+ * - get description and images from form
+ * - save images as attachments
+ * - link attachment to protocol => protocol_id
+ * - link protocol to user/company => person_ids/company_ids (Array)
+ * - save description from form into content of protocol
+ */
 
 /* jshint ignore:start */
 class Person {
