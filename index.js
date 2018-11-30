@@ -15,7 +15,7 @@ const { Person, Company } = require("./modules/centralstation");
 const PORT = process.env.PORT || 3000;
 
 // config
-const config = require("/config.json");
+const config = require("./config.json");
 
 const app = express();
 
