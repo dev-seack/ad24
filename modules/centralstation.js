@@ -1,21 +1,5 @@
-const crm = require("../config.json").crm;
+const crm = require("/config.json").crm;
 const axios = require("axios");
-
-// TODO:
-/*
-PERSON, CONTACT_DETAILS, ADDRESS, PROJECTS, COMPANIES AND DEALS
-PERSON IS MAINLY JUST AN OBJECT TO SAVE THE ID AND ATTACHMENTS LIKE PROJECT_ID OR CONTACT_ID. THIS MERGED TOGETHER WILL CREATE THE PERSON OR COMPANY IN WHOLE
-
-- Search Person with email: https://auftragsdepot24.centralstationcrm.net/api/contact_details/search.json?apikey={{apikey}}&type=people&name=info@auftragsdepot24.de
-- if response is empty, create person, if not, save the inserted information and send it in an email to ad24
-- Person: 
-  - create/Post 'Person': name, first_name
-  - SAVE ID FROM CREATED PERSON
-  - create/post contact_details to save phonenumber, email, ...
-  - attach Persons ID!!!
-    "attachable_type": "Person",
-    "attachable_id": 7485489
-*/
 
 const URLS = {
   ADD_PERSON: crm.BASE_URL + "people.json",
