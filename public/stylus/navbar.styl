@@ -1,15 +1,14 @@
-nav-height = 70px
-
 .navbar
     position: fixed
+    z-index: 999
     width 100%
     height: nav-height
     padding: 0;
-    background: rgba(255,255,255,0)
-    transition: background .5s
+    background: nav_white
+    transition: background .3s
     &.scrolled
-        transition: all .5s
-        background: white_transparent
+        transition: all .3s
+        background: nav_white_scrolled
     .navbar-brand
         position: relative
         top: -100%
@@ -21,7 +20,16 @@ nav-height = 70px
             transition: top .3s ease-in-out
         img
             height: 100%
+        .navbar-slogan
+            display: none
+            margin-left: 1.5rem
+            color: ad-blue
     .landing-btn
         height: nav-height
-        width: 300px;
-        
+        min-width: btn-width;
+
+@media screen and (min-width: 992px)
+    .navbar
+        .navbar-brand
+            .navbar-slogan
+                display: inline-block

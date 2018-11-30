@@ -1,0 +1,79 @@
+body
+    height: 300vh
+    
+.landing-container
+    background: url('/assets/landing/bg.jpg') no-repeat center fixed
+    background-size: cover
+    position: relative
+    height: 100vh
+    width: 100vw
+    z-index: 1
+    padding-top: btn-height
+    .landing-responsive-overlay
+        position: absolute
+        width: 100vw
+        top: nav-height
+        bottom: 0
+        background: nav_white
+        z-index: 5
+    .landing-overlay-left, .landing-overlay-right
+        position: absolute
+        display: none        
+    .content-wrapper
+        position absolute
+        top: 0
+        bottom: 0
+        right: 0
+        left: 0
+        z-index: 10
+        display: flex
+        justify-content: center
+        align-items: center
+        flex-direction: column
+        padding: 0 3rem
+        .landing-header
+            text-transform: uppercase
+            letter-spacing: 5px
+            font-weight: 500
+        img
+            margin-bottom: 2rem
+        .landing-slogan
+            font-size: 1.1em
+            span 
+                font-weight: 600
+                text-transform: uppercase
+            span:nth-child(2)
+                margin: 0 1.5rem
+
+@media screen and (min-width: 768px)
+    .landing-container
+        .content-wrapper
+            img
+                height: 225px
+
+@media screen and (min-width: 1200px)
+    .landing-container
+        .landing-responsive-overlay
+            display: none
+        .landing-overlay-left, .landing-overlay-right
+            display: block
+        .landing-overlay-left
+            width: 100%
+            height: 100%
+            bottom: 0
+            top: nav-height
+            right: btn-width
+            background: url("/assets/landing/landingoverlay-left.svg") right top no-repeat
+            background-size: cover
+        .landing-overlay-right
+            background: url("/assets/landing/landingoverlay-right.svg") right bottom no-repeat
+            background-size: initial;
+            bottom: 0
+            right: 0
+            width: 100%
+            height: 100%
+        .content-wrapper
+            right: 50%
+            left: calc(25vw - 250px)
+            img
+                height: 225px

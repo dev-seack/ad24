@@ -38,4 +38,14 @@ $(function() {
       });
     return false;
   });
+
+  // Scroll
+  // Navbar
+  $(window).scroll(function(e) {
+    if ($(this).scrollTop() > 0) {
+      $(".navbar, .navbar-brand").addClass("scrolled");
+    } else {
+      $(".navbar, .navbar-brand").removeClass("scrolled");
+    }
+  });
 });
