@@ -1,5 +1,6 @@
 const { crm } = require("../config.json");
 const axios = require("axios");
+const imgToBase = require("image-to-base64");
 
 const URLS = {
   ADD_PERSON: crm.BASE_URL + "people.json",
@@ -28,26 +29,25 @@ const API = "?apikey=" + crm.API_KEY;
  */
 
 /* jshint ignore:start */
-class Protocol {
-  /**
-   * crm.BASE_URL + "/people/{person_id}/protocols.json" + API
-   * crm.BASE_URL + "/companies/{companies_id}/protocols.json" + API
-   */
-  constructor(content, person_id = null, company_id = null) {
+class Data {
+  constructor(content, attachments, person_id = null, company_id = null) {
     this.person_id = person_id;
     this.company_id = company_id;
-    this.content = content; // description from form
+    this.content = content;
+    this.attachments = attachments;
+    this.attachment_url = crm.BASE_URL + "/attachments.json" + API;
 
     // company
     if (this.person_id === null && this.company_id !== null) {
-      this.url =
+      this.protocol_url =
         crm.BASE_URL +
         "/companies/" +
         this.company_id +
         "/protocols.json" +
         API;
     } else {
-      this.url =
+      // person
+      this.protocol_url =
         crm.BASE_URL + "/people/" + this.person_id + "/protocols.json" + API;
     }
   }
@@ -57,12 +57,51 @@ class Protocol {
       const p = {
         content: this.content
       };
-      const response = await axios.post(this.url, p);
+      const response = await axios.post(this.protocol_url, p);
 
       if (response.status === 201) {
+        await this.addAttachments(response.data.protocol_object_note.id);
+
         return response.data;
       }
       return false;
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
+
+  async addAttachments(protocol_id) {
+    try {
+      // if attachments are given
+      if (this.attachments.length > 0) {
+        // encode image to base64
+        const filename = "test.png";
+        const type = filename.substr(filename.indexOf(".") + 1);
+        const encoded_image = await imgToBase(__dirname + "/" + filename)
+          .then((image) => image)
+          .catch((e) => e);
+
+        // generate valid attachments object => link to protocol (protocol_id)
+        // Outsourcen - attach it to the persons object, which will be generated in index.js
+        var attachment_obj = {
+          attachment: {
+            attachable_id: protocol_id,
+            attachable_type: "Protocol",
+            attachment_category_name: "Bilder",
+            content_type: "image/" + type,
+            filename: "Filename",
+            data: encoded_image
+          }
+        };
+
+        // post attachments
+        const response = await axios.post(this.attachment_url, attachment_obj);
+
+        if (response.status === 201) {
+          return console.log(response);
+        }
+        return false;
+      }
     } catch (e) {
       throw new Error(e);
     }
@@ -76,11 +115,11 @@ class Person {
 
   async addPerson(person) {
     try {
-      if (
-        await this.isPersonExisting(person.person.emails_attributes[0].name)
-      ) {
-        return new Error("Person already exists");
-      }
+      // if (
+      //   await this.isPersonExisting(person.person.emails_attributes[0].name)
+      // ) {
+      //   return new Error("Person already exists");
+      // }
 
       const response = await axios.post(URLS.ADD_PERSON + API, person);
 
@@ -93,8 +132,14 @@ class Person {
         // create attachments ...
 
         // create new protocol for this person
-        const protocol = new Protocol(person.person.form_content, this.id); // form_content directly out of form??? -> access inside protocol
-        return await protocol
+        const data = new Data(
+          person.person.form_content,
+          ["das ist eine datei"],
+          this.id,
+          null
+        );
+
+        return await data
           .addProtocol()
           .then((p) => {
             customResponse["Protocol"] = p.protocol_object_note;
@@ -147,12 +192,8 @@ class Company {
         // create attachments ...
 
         // create new protocol for this company
-        const protocol = new Protocol(
-          company.company.form_content,
-          null,
-          this.id
-        ); // form_content directly out of form??? -> access inside protocol
-        return await protocol
+        const data = new Data(company.company.form_content, [], null, this.id);
+        return await data
           .addProtocol()
           .then((p) => {
             customResponse["Protocol"] = p.protocol_object_note;
