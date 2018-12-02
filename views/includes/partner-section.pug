@@ -1,0 +1,21 @@
+div.container-fluid
+    div.container
+        div.row
+            p.h1.text-center.col-12.section-heading UNSERE PARTNER
+
+    div#partner-logo-container.row
+        div.col-sm.col-12.mb-4.p-5
+            img(src="/assets/logo.svg", alt="")
+        div.col-sm.col-12.mb-4.p-5
+            img(src="/assets/logo.svg", alt="")
+        div.col-sm.col-12.mb-4.p-5
+            img(src="/assets/logo.svg", alt="")
+        
+    div.container
+        div.row
+            p.h1.text-center.col-12.section-heading WOLLEN SIE AUCH PARTNER WERDEN?
+            p.text-center.col-12.lead Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam, exercitationem ipsum. Tempore labore dolorum ullam beatae numquam asperiores voluptatibus recusandae quod, harum, provident, dicta molestias ipsa accusantium fugit? Unde, cum.
+        div.row
+            div.col-12
+                include snippets/newsletter
+                +newsletter("Partner")
