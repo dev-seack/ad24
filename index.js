@@ -6,6 +6,7 @@ const join = require("path").join;
 const excel = require("excel4node");
 const nib = require("nib");
 const validator = require("validator");
+const moment = require("moment");
 
 const publicDir = join(__dirname, "/public");
 
@@ -24,16 +25,26 @@ app.set("views", __dirname + "/views");
 app.set("view engine", "pug");
 
 // bodyparser
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(express.static(publicDir));
 
+// Pages
 app.get("/", (req, res) => {
   res.render("index", { title: "Home" });
 });
 
-// register regular person
+app.get("/person", (req, res) => {
+  res.render("person", {
+    today: moment().format("YYYY-MM-DD"),
+    inOneWeek: moment()
+      .day(7)
+      .format("YYYY-MM-DD")
+  });
+});
+
+// Register a Person
 app.get("/regperson", (req, res) => {
   const person_template = {
     person: {
@@ -99,6 +110,7 @@ app.get("/regperson", (req, res) => {
     });
 });
 
+// Register a Company
 app.get("/regcompany", (req, res) => {
   const company_template = {
     company: {
@@ -137,6 +149,7 @@ app.get("/regcompany", (req, res) => {
     });
 });
 
+// Newsletter
 app.get("/nsend", (req, res) => {
   const email = req.query.email; // get form information
   const type = req.query.type; // get user type

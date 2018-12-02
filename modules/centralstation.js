@@ -35,20 +35,16 @@ class Data {
     this.company_id = company_id;
     this.content = content;
     this.attachments = attachments;
-    this.attachment_url = crm.BASE_URL + "/attachments.json" + API;
+    this.attachment_url = crm.BASE_URL + "attachments.json" + API;
 
     // company
     if (this.person_id === null && this.company_id !== null) {
       this.protocol_url =
-        crm.BASE_URL +
-        "/companies/" +
-        this.company_id +
-        "/protocols.json" +
-        API;
+        crm.BASE_URL + "companies/" + this.company_id + "/protocols.json" + API;
     } else {
       // person
       this.protocol_url =
-        crm.BASE_URL + "/people/" + this.person_id + "/protocols.json" + API;
+        crm.BASE_URL + "people/" + this.person_id + "/protocols.json" + API;
     }
   }
 
@@ -71,17 +67,17 @@ class Data {
   }
 
   async addAttachments(protocol_id) {
-    try {
-      // if attachments are given
-      if (this.attachments.length > 0) {
+    // if attachments are given
+    if (this.attachments.length > 0) {
+      // for all attachments ...
+      for (const [i, value] of this.attachments.entries()) {
         // encode image to base64
-        const filename = "test.png";
+        const filename = "test.jpg"; // path to image
         const type = filename.substr(filename.indexOf(".") + 1);
         const encoded_image = await imgToBase(__dirname + "/" + filename)
           .then((image) => image)
-          .catch((e) => e);
+          .catch((err) => err);
 
-        // generate valid attachments object => link to protocol (protocol_id)
         // Outsourcen - attach it to the persons object, which will be generated in index.js
         var attachment_obj = {
           attachment: {
@@ -89,21 +85,18 @@ class Data {
             attachable_type: "Protocol",
             attachment_category_name: "Bilder",
             content_type: "image/" + type,
-            filename: "Filename",
+            original_filename: "File_" + value,
             data: encoded_image
           }
         };
 
-        // post attachments
-        const response = await axios.post(this.attachment_url, attachment_obj);
-
-        if (response.status === 201) {
-          return console.log(response);
+        try {
+          // post attachments
+          await axios.post(this.attachment_url, attachment_obj);
+        } catch (e) {
+          console.log(e);
         }
-        return false;
       }
-    } catch (e) {
-      throw new Error(e);
     }
   }
 }
@@ -134,7 +127,7 @@ class Person {
         // create new protocol for this person
         const data = new Data(
           person.person.form_content,
-          ["das ist eine datei"],
+          ["1", "2"],
           this.id,
           null
         );
@@ -192,7 +185,12 @@ class Company {
         // create attachments ...
 
         // create new protocol for this company
-        const data = new Data(company.company.form_content, [], null, this.id);
+        const data = new Data(
+          company.company.form_content,
+          ["1", "2"],
+          null,
+          this.id
+        );
         return await data
           .addProtocol()
           .then((p) => {
