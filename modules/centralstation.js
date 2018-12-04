@@ -1,4 +1,4 @@
-const { crm } = require("../config.json");
+//const { crm } = require("../config.json");
 const axios = require("axios");
 const imgToBase = require("image-to-base64");
 
