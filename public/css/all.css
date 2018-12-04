@@ -56,6 +56,16 @@ a.btn {
 }
 .container {
   margin-top: 5.5rem;
+  margin-bottom: 175px;
+}
+.fullHeight {
+  height: 100%;
+}
+.fullWidth {
+  width: 100%;
+}
+hr.big {
+  border-top: 3px solid #fff;
 }
 .navbar {
   position: fixed;
@@ -209,6 +219,72 @@ a.btn {
   bottom: 0;
   margin: auto;
 }
+.testimonials-outer-container {
+  background: url("/assets/icons/werkzeug_bg.svg") center center no-repeat;
+  background-size: contain;
+}
+.carousel-control-next,
+.carousel-control-prev {
+  opacity: 1;
+}
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%232d619b' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+}
+.carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%232d619b' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+}
+.testimonials-container .profil {
+  display: block;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+.testimonials-container .name {
+  text-transform: uppercase;
+  margin-top: 0.75em;
+  margin-bottom: 0;
+  letter-spacing: 3px;
+}
+.testimonials-container .job {
+  letter-spacing: 1px;
+}
+.testimonials-container .text {
+  quotes: "“" "”" "‘" "’";
+}
+.testimonials-container .text:before {
+  content: open-quote;
+}
+.testimonials-container .text:after {
+  content: close-quote;
+}
+.testimonials-container .rating span {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  margin: 0 0.5em;
+}
+.testimonials-container .rating .star {
+  background: url("/assets/testimonials/star.svg") center center no-repeat;
+  background-size: contain;
+}
+.testimonials-container .rating .star-full {
+  background: url("/assets/testimonials/star-full.svg") center center no-repeat;
+  background-size: contain;
+}
+.testimonials-container .arrows > * {
+  position: absolute;
+  border-top: solid #333 3px;
+  border-right: solid #333 3px;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+}
+.testimonials-container .arrows .arrow-right {
+  right: 50px;
+}
+.testimonials-container .arrows .arrow-left {
+  left: 50px;
+}
 .video-container {
   position: relative;
   z-index: 999;
@@ -216,6 +292,27 @@ a.btn {
 #partner-logo-container {
   background: url("/assets/partner/bg.jpg") no-repeat fixed;
   background-size: cover;
+}
+footer {
+  position: relative;
+  background: #2d619b;
+  color: #fff;
+  z-index: 999;
+}
+.header-container {
+  background: url("/assets/person/header_bg.jpg") center center no-repeat fixed;
+  background-size: cover;
+  width: 100vw;
+  height: 400px;
+}
+.header-container .content-container {
+  margin-top: 70px;
+  padding: 70px 3rem;
+  background: rgba(255,255,255,0.6);
+}
+.header-container .content-container .form-header-heading {
+  font-size: 3em;
+  letter-spacing: 5px;
 }
 .newsletter-form > .email-input::before {
   opacity: 0;

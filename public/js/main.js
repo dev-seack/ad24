@@ -48,4 +48,9 @@ $(function() {
       $(".navbar, .navbar-brand").removeClass("scrolled");
     }
   });
+
+  // Carousel
+  $(".carousel").carousel({
+    interval: 7000
+  });
 });

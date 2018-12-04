@@ -1,0 +1,58 @@
+.testimonials-outer-container
+    background: url('/assets/icons/werkzeug_bg.svg') center center no-repeat;
+    background-size: contain
+
+.carousel-control-next,.carousel-control-prev
+    opacity: 1
+.carousel-control-next-icon
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%232d619b' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E")
+.carousel-control-prev-icon
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%232d619b' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E")
+
+.testimonials-container    
+    .profil
+        display: block
+        width: 200px
+        height: 200px
+        border-radius: 50%
+
+    .name
+        text-transform: uppercase
+        margin-top: .75em
+        margin-bottom: 0
+        letter-spacing: 3px
+    .job
+        letter-spacing: 1px
+
+    .text
+        quotes: "“" "”" "‘" "’"
+    .text:before
+        content: open-quote;
+    .text:after
+        content: close-quote;
+
+    .rating
+        span
+            display: inline-block
+            width: 25px
+            height: 25px
+            margin: 0 .5em
+        .star
+            background: url('/assets/testimonials/star.svg') center center no-repeat
+            background-size: contain
+        .star-full
+            background: url('/assets/testimonials/star-full.svg') center center no-repeat
+            background-size: contain
+
+    .arrows        
+        & > *
+            position: absolute
+            border-top: solid #333 3px
+            border-right: solid #333 3px
+            width: 30px
+            height: 30px
+            display: inline-block
+        .arrow-right
+            right: 50px
+        .arrow-left
+            left: 50px
