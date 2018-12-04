@@ -1,4 +1,20 @@
 $(function() {
+  // Reload in the middle of the page???
+  if ($(this).scrollTop() > 0) {
+    $(".navbar, .navbar-brand").addClass("scrolled");
+  }
+
+  // change sub_categorie dropdown on change main_category
+  $("#inputMainCategory").change(function() {
+    // get the new subcategories
+    var newSubCategories = $('[data-main-category="' + $(this).val() + '"]');
+    $("[data-main-category]").hide();
+    newSubCategories.show();
+
+    // select first element
+    newSubCategories[0].selected = true;
+  });
+
   $(".newsletter-form").submit(function(e) {
     e.preventDefault();
     const delay = 5000;

@@ -1,0 +1,138 @@
+{
+  "main_categories": [
+    {
+      "id": 1,
+      "name": "Außenarbeiten",
+      "sub_categories": [
+        "Abriss",
+        "Außenkonstruktion",
+        "Baggerarbeiten",
+        "Bautrockenlegung",
+        "Bautrocknung",
+        "Wasserschadensanierung",
+        "Dachdecker",
+        "Fundament",
+        "Garagentor",
+        "Gebäudereinigung",
+        "Gerüstbau",
+        "Hochbau",
+        "Isolierung",
+        "Dämmung",
+        "Maler Lackierer",
+        "Maurer",
+        "Pflasterarbeiten",
+        "Poolbau",
+        "Schwimmbadbau",
+        "Rolläden",
+        "Markisen",
+        "Sanierung",
+        "Modernisierung",
+        "Schlosser",
+        "Metallbau",
+        "Solar",
+        "Photovoltaik",
+        "Verandabau",
+        "Terrassenbau",
+        "Verputzarbeiten",
+        "Gebaudeverkleidung",
+        "Verfugen",
+        "Fugarbeiten",
+        "Klinkerfugen",
+        "Wohnungsbau",
+        "Zaunbau",
+        "Torbau",
+        "Sonstige Handwerksleistung"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Innenarbeiten",
+      "sub_categories": [
+        "Badsanierung",
+        "Bautrockenlegung",
+        "Bautrocknung",
+        "Wasserschadensanierung",
+        "Bodenleger",
+        "Deckenarbeiten",
+        "Entrümpelung",
+        "Elektriker",
+        "Fenstermontage",
+        "Fliesenleger",
+        "Gasinstallation",
+        "Wasserinstallation",
+        "Gebäudereinigung",
+        "Heizungsinstallation",
+        "Isolierung",
+        "Dämmung",
+        "Kaminbau",
+        "Ofenbau",
+        "Klempner",
+        "Laminat verlegen",
+        "Maler Lackierer",
+        "Maurer",
+        "Möbelaufbau",
+        "Modernisierung",
+        "Sanierung",
+        "Rolläden",
+        "Markisen",
+        "Raumausstatter",
+        "Schlosser",
+        "Metallbau",
+        "Stukkateur",
+        "Tapezierer",
+        "Tischler",
+        "Schreiner",
+        "Treppenbau",
+        "Trockenbau",
+        "Türen",
+        "Küchenbau",
+        "Verfugen",
+        "Fugarbeiten",
+        "Klinkerfugen",
+        "Wintergartenbau",
+        "Zimmerer",
+        "Sonstige Handwerksleistung"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Gartenarbeiten",
+      "sub_categories": [
+        "Baumfällung",
+        "Gärtner",
+        "Gartenteich",
+        "Grabpflege",
+        "Sonstige Gartenarbeiten"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Planung, Beratung",
+      "sub_categories": [
+        "Architektur",
+        "Bauplanung",
+        "Innenarchitektur",
+        "Energieberater",
+        "Sonstige Beratung"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Elektronik, Technik",
+      "sub_categories": [
+        "Aufbau, Reparatur Sat",
+        "Einbau/Reparatur Elektrogeräte",
+        "Einbau/Reparatur Fernseher",
+        "Einbau/Reparatur Küchengeräte",
+        "Elektriker",
+        "Reparatur Waschmaschine",
+        "Sonstige Technik-Elektroarbeiten"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Sonstiges",
+      "sub_categories": ["Sonstige Arbeiten"]
+    }
+  ]
+}

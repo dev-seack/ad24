@@ -1,0 +1,14 @@
+extends ./layout
+
+block append script 
+            script(src="/js/dropzone.min.js")
+
+            link(href="/css/dropzone.min.css" rel="stylesheet")
+
+block content
+  include includes/navbar
+  include includes/company/header
+  include includes/company/form
+
+block gradient-bottom
+  div.gradient-bottom

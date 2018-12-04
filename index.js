@@ -1,3 +1,5 @@
+require("./config");
+
 // packages
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -7,7 +9,8 @@ const excel = require("excel4node");
 const nib = require("nib");
 const validator = require("validator");
 const moment = require("moment");
-
+const formidable = require("formidable");
+const util = require("util");
 const publicDir = join(__dirname, "/public");
 
 const { Person, Company } = require("./modules/centralstation");
@@ -16,7 +19,10 @@ const { Person, Company } = require("./modules/centralstation");
 const PORT = process.env.PORT || 3000;
 
 // config
-//const config = require("./config.json");
+const config = require("./config.json");
+
+// category
+const categories = require("./categories.json").main_categories;
 
 const app = express();
 
@@ -37,10 +43,97 @@ app.get("/", (req, res) => {
 
 app.get("/person", (req, res) => {
   res.render("person", {
+    title: "Handwerker finden",
+    categories: categories,
     today: moment().format("YYYY-MM-DD"),
     inOneWeek: moment()
       .day(7)
       .format("YYYY-MM-DD")
+  });
+});
+
+app.get("/company", (req, res) => {
+  res.render("company", { title: "Auftrag suchen" });
+});
+
+app.post("/regperson", (req, res) => {
+  // parse a file upload
+  var form = new formidable.IncomingForm();
+
+  form.uploadDir = __dirname + "/tmp/form";
+  form.parse(req, function(err, fields, files) {
+    const data = {
+      person: {
+        first_name: fields.firstname || "",
+        name: fields.lastname || "",
+        emails_attributes: [
+          {
+            name: fields.emaail || "",
+            atype: "office"
+          }
+        ],
+        tels_attributes: [
+          {
+            name: fields.phone || "",
+            atype: "office"
+          }
+        ],
+        tags_attributes: [
+          {
+            name: "Online"
+          },
+          {
+            name: "Privat"
+          }
+        ],
+        addrs_attributes: [
+          {
+            zip: fields.plz || "",
+            city: fields.city || ""
+          }
+        ],
+        custom_fields_attributes: [
+          {
+            custom_fields_type_id: 1,
+            attachable_id: "",
+            attachable_type: "Person",
+            name: fields.mainCat || ""
+          },
+          {
+            custom_fields_type_id: 2,
+            attachable_id: "",
+            attachable_type: "Person",
+            name: fields.secCat || ""
+          }
+        ],
+        form_content: fields.description || ""
+      }
+    };
+
+    // convert 'files' object to array,
+    // containing only the props that start with 'file'
+    const attachmentProps = Object.getOwnPropertyNames(files).filter((prop) =>
+      prop.startsWith("file")
+    );
+    const attachments = attachmentProps.map(function(key) {
+      return files[key];
+    });
+
+    var person = new Person();
+    person
+      .addPerson(data, attachments)
+      .then((response) => {
+        if (response.message !== undefined) {
+          res.status(404).send(response.message);
+        } else {
+          res
+            .status(200)
+            .send({ Person: response.Person, Protocol: response.Protocol });
+        }
+      })
+      .catch((e) => {
+        res.send(e);
+      });
   });
 });
 

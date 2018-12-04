@@ -299,6 +299,10 @@ footer {
   color: #fff;
   z-index: 999;
 }
+.dropzone {
+  border: 3px solid #ced4da !important;
+  border-radius: 0.25rem;
+}
 .header-container {
   background: url("/assets/person/header_bg.jpg") center center no-repeat fixed;
   background-size: cover;

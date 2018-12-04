@@ -1,6 +1,6 @@
-//const { crm } = require("../config.json");
+const { crm } = require("../config.json");
 const axios = require("axios");
-const imgToBase = require("image-to-base64");
+const base64Img = require("base64-img");
 
 const URLS = {
   ADD_PERSON: crm.BASE_URL + "people.json",
@@ -12,21 +12,6 @@ const URLS = {
 };
 
 const API = "?apikey=" + crm.API_KEY;
-
-// TODO:
-/** FOR PERSON AND COMPANY
- * - Create Person/Company
- * - save ID temporarily
- * ------------------------
- * - Create Protocol
- * - save protocol_id temporarily
- * - Create Attachment
- * - get description and images from form
- * - save images as attachments
- * - link attachment to protocol => protocol_id
- * - link protocol to user/company => person_ids/company_ids (Array)
- * - save description from form into content of protocol
- */
 
 /* jshint ignore:start */
 class Data {
@@ -70,28 +55,25 @@ class Data {
     // if attachments are given
     if (this.attachments.length > 0) {
       // for all attachments ...
-      for (const [i, value] of this.attachments.entries()) {
+      for (const [i, file] of this.attachments.entries()) {
         // encode image to base64
-        const filename = "test.jpg"; // path to image
-        const type = filename.substr(filename.indexOf(".") + 1);
-        const encoded_image = await imgToBase(__dirname + "/" + filename)
-          .then((image) => image)
-          .catch((err) => err);
-
-        // Outsourcen - attach it to the persons object, which will be generated in index.js
-        var attachment_obj = {
-          attachment: {
-            attachable_id: protocol_id,
-            attachable_type: "Protocol",
-            attachment_category_name: "Bilder",
-            content_type: "image/" + type,
-            original_filename: "File_" + value,
-            data: encoded_image
-          }
-        };
-
         try {
-          // post attachments
+          const encoded_image = base64Img
+            .base64Sync(file.path)
+            .replace(/^data:image\/[a-z]+;base64,/, "");
+
+          // Outsourcen - attach it to the persons object, which will be generated in index.js
+          var attachment_obj = {
+            attachment: {
+              attachable_id: protocol_id,
+              attachable_type: "Protocol",
+              attachment_category_name: "Bilder",
+              content_type: file.type,
+              original_filename: file.name,
+              data: encoded_image
+            }
+          };
+
           await axios.post(this.attachment_url, attachment_obj);
         } catch (e) {
           console.log(e);
@@ -102,11 +84,11 @@ class Data {
 }
 
 class Person {
-  constructor() {
+  constructor(fields, files) {
     this.id = null;
   }
 
-  async addPerson(person) {
+  async addPerson(person, files) {
     try {
       // if (
       //   await this.isPersonExisting(person.person.emails_attributes[0].name)
@@ -125,12 +107,7 @@ class Person {
         // create attachments ...
 
         // create new protocol for this person
-        const data = new Data(
-          person.person.form_content,
-          ["1", "2"],
-          this.id,
-          null
-        );
+        const data = new Data(person.person.form_content, files, this.id, null);
 
         return await data
           .addProtocol()

@@ -2,20 +2,23 @@ div.container
     div.row
         p.h1.text-center.col-12.section-heading JETZT HANDWERKER FINDEN
         p.text-center.col-12.lead Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam, exercitationem ipsum. Tempore labore dolorum ullam beatae numquam asperiores voluptatibus recusandae quod, harum, provident, dicta molestias ipsa accusantium fugit? Unde, cum.
-    form.mt-5(action="/regperson" enctype="multipart/form-data" method="POST")
+    form#formDropzone.mt-5(action="/regperson" enctype="multipart/form-data" method="POST")
         div.form-row
             div.form-group.col-12
                 label(for="inputDescription") Auftragsbeschreibung
-                textarea#inputDescription.form-control(type="textarea", rows="20", name="description", required)
+                textarea#inputDescription.form-control(type="textarea", rows="5", name="description", required)                    
         div.form-row
-            div.form-group.col-12
+            div.form-group.col-12.col-md-6
                 label(for="inputMainCategory") Hauptkategorie
                 select(name="mainCat", required)#inputMainCategory.form-control
-                    option Garten
-            div.form-group.col-12
+                    for item in categories
+                        option= item.name
+            div.form-group.col-12.col-md-6
                 label(for="inputSecondaryCategory") Unterkategorie
-                select(name="secCat", required)#inputMainCategory.form-control
-                    option Teich
+                select(name="secCat" ,required)#inputSubCategory.form-control
+                    for cat in categories
+                        for item in cat.sub_categories
+                            option(data-main-category=cat.name, style=( cat != categories[0] ? "display: none;" : false ))= item
         hr
         div.form-row
             div.form-group.col-md-6.col-12
@@ -28,7 +31,9 @@ div.container
                 label(for="inputEmail") Email
                 input#inputEmail.form-control(type="email", name="email", required)
             div.form-group.col-md-6.col-12
-                label(for="inputPhone") Telefonnummer*
+                label(for="inputPhone") 
+                    span Telefonnummer 
+                    span.text-muted (optional)
                 input#inputPhone.form-control(type="phone", name="phone")
         hr
         div.form-row
@@ -39,22 +44,30 @@ div.container
                 label(for="inputCity") Ort
                 input#inputCity.form-control(type="text", name="city", required)
             div.form-group.col-6.col-md-4
-                label(for="inputBudget") Budget*
+                label(for="inputBudget") 
+                    span Budget 
+                    span.text-muted (optional)
                 input#inputBudget.form-control(type="number", name="budget")
             div.form-group.col-6
-                label(for="inputDateFrom") Zeitraum - Von*
+                label(for="inputDateFrom") 
+                    span Zeitraum - Von 
+                    span.text-muted (optional)
                 input#inputDateFrom.form-control(type="date", name="dateFrom", min=today, value=today)
             div.form-group.col-6
-                label(for="inputDateTo") Zeitraum - Bis*
+                label(for="inputDateTo") 
+                    span Zeitraum - Bis 
+                    span.text-muted (optional)
                 input#inputDateTo.form-control(type="date", name="dateTo", min=today, value=inOneWeek)
         hr
         div.form-row
-            div#personDropzone.dropzone
+            p.text-muted F&uuml;ge hier optional Bilder hinzu, damit wir uns schonmal einen kleinen &Uuml;berblick verschaffen k&ouml;nnen
+            p.text-muted (Maximal 5 Bilder, die maximal jeweils 3 MB Groß sind)
+            div#personDropzone.dropzone.col-12
         hr
         div.form-row
             div.form-check
                 input#checkbox.form-check-input(type="checkbox", required)
-                label.form-check-label(for="checkbox") Hiermit bestätige ich, dass ich die Datenschutzerklärung gelesen habe und den AGB's zustimme
+                label.form-check-label(for="checkbox") Hiermit best&auml;tige ich, dass ich die Datenschutzerkl&auml;rung gelesen habe und den AGB's zustimme
         div.row.mt-5.pt-5
             button.col-12.col-sm-12.col-lg-4.btn.ad-primary-btn.ad-red-btn.m-auto(href="#", type="submit") Anfrage absenden
         
