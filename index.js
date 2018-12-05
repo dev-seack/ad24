@@ -1,5 +1,3 @@
-require("./config");
-
 // packages
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -19,7 +17,7 @@ const { Person, Company } = require("./modules/centralstation");
 const PORT = process.env.PORT || 3000;
 
 // config
-const config = require("./config.json");
+const { mail } = require("./config.js");
 
 // category
 const categories = require("./categories.json").main_categories;
@@ -251,12 +249,12 @@ app.get("/nsend", (req, res) => {
     return res.status(500).send("Keine gültige elektronische Postadresse");
 
   let transporter = nodemailer.createTransport({
-    host: config.mail.host,
-    port: config.mail.port,
+    host: mail.host,
+    port: mail.port,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: config.mail.absender,
-      pass: config.mail.passwort
+      user: mail.absender,
+      pass: mail.passwort
     },
     tls: {
       rejectUnauthorized: false // just for local environment
@@ -265,9 +263,9 @@ app.get("/nsend", (req, res) => {
 
   // setup email data with unicode symbols
   let mailOptions = {
-    from: `"Newsletter" <${config.mail.absender}> - ${type}`, // sender address
-    to: config.mail.empfaenger, // list of receivers
-    subject: config.mail.betreff, // Subject line
+    from: `"Newsletter" <${mail.absender}> - ${type}`, // sender address
+    to: mail.empfaenger, // list of receivers
+    subject: mail.betreff, // Subject line
     text: `Ein Benutzer (${type}) hat sich angemeldet. Erreiche ihn unter: ${email}`,
     html: `<p>Ein Benutzer <b>(${type})</b> hat sich angemeldet.</p><p>Erreiche ihn unter: ${email}</p>`
   };

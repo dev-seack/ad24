@@ -24,7 +24,7 @@ div.container
         div.form-row
             div.form-group.col-12
                 label(for="inputDescription") Auftragsbeschreibung
-                textarea#inputDescription.form-control(type="textarea", rows="20", name="description", required)
+                textarea#inputDescription.form-control(type="textarea", rows="20", name="description", required)
         div.form-row
             div.form-group.col-12
                 label(for="inputMainCategory") Hauptkategorie
@@ -53,5 +53,6 @@ div.container
                 input#checkbox.form-check-input(type="checkbox", required)
                 label.form-check-label(for="checkbox") Hiermit bestätige ich, dass ich die Datenschutzerklärung gelesen habe und den AGB's zustimme
         div.row.mt-5.pt-5
-            button.col-12.col-sm-12.col-lg-4.btn.ad-primary-btn.ad-red-btn.m-auto(href="#", type="submit") Anfrage absenden
+            button.col-12.col-sm-12.col-lg-4.btn.ad-primary-btn.ad-red-btn.m-auto.auftrag(href="#", type="submit") 
+                span Anfrage absenden
         

@@ -18,3 +18,5 @@ if (!isHeroku) {
     }
   };
 }
+
+module.exports = { mail: config.mail, crm: config.crm };

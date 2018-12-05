@@ -1,5 +1,6 @@
 // buttons
 .ad-primary-btn
+    position: relative
     color: white
     letter-spacing: 1px
     font-size: 21px
@@ -14,10 +15,41 @@
     max-width: btn-width
     padding: 0
     border-radius: 0
+    overflow: hidden
 
     &:hover
         color: white
         text-decoration: none
+
+        span
+            transform: translateX(200%)
+
+        &:before
+            left: 0
+            font-size: 175%
+
+    span
+        display: inline-block
+        width: 100%
+        height: 100%
+        transition: .3s all
+
+    &:before
+        position: absolute
+        height: 100%
+        width: 100%
+        transition: all .3s, font-size .3s .3s
+        top: 0
+        left: -100%
+        font-family: "Font Awesome 5 Free"
+        font-weight: 900
+
+    &.handwerker:before
+        content: '\f6e3'
+    &.auftrag:before
+        content: '\f15c'
+    &.kontakt:before
+        content: '\f0e0'
 
 .ad-blue-btn
     background: ad-blue
