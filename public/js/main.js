@@ -57,13 +57,19 @@ $(function() {
 
   // Scroll
   // Navbar
-  $(window).scroll(function(e) {
-    if ($(this).scrollTop() > 0) {
-      $(".navbar, .navbar-brand").addClass("scrolled");
-    } else {
-      $(".navbar, .navbar-brand").removeClass("scrolled");
-    }
-  });
+
+  const path = window.location.href;
+
+  // just detect scrolling for the navbar if the user is on the index
+  if (path.length === path.lastIndexOf("/") + 1) {
+    $(window).scroll(function(e) {
+      if ($(this).scrollTop() > 0) {
+        $(".navbar, .navbar-brand").addClass("scrolled");
+      } else {
+        $(".navbar, .navbar-brand").removeClass("scrolled");
+      }
+    });
+  }
 
   // Carousel
   $(".carousel").carousel({

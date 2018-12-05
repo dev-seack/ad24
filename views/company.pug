@@ -1,12 +1,13 @@
 extends ./layout
 
 block append script 
-            script(src="/js/dropzone.min.js")
+  script(src="/js/dropzone.min.js")
 
-            link(href="/css/dropzone.min.css" rel="stylesheet")
+  link(href="/css/dropzone.min.css" rel="stylesheet")
 
 block content
   include includes/navbar
+  +navbar("company")
   include includes/company/header
   include includes/company/form
 

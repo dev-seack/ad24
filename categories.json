@@ -99,34 +99,30 @@
       "name": "Gartenarbeiten",
       "sub_categories": [
         "Baumfällung",
+        "Baumschnitt",
+        "Bepflanzung",
         "Gärtner",
         "Gartenteich",
         "Grabpflege",
+        "Heckenschnitt",
+        "Rasenmähen",
+        "Wurzelfräsen",
         "Sonstige Gartenarbeiten"
       ]
     },
     {
       "id": 4,
-      "name": "Planung, Beratung",
+      "name": "Haushalt, Reinigung",
       "sub_categories": [
-        "Architektur",
-        "Bauplanung",
-        "Innenarchitektur",
-        "Energieberater",
-        "Sonstige Beratung"
-      ]
-    },
-    {
-      "id": 5,
-      "name": "Elektronik, Technik",
-      "sub_categories": [
-        "Aufbau, Reparatur Sat",
-        "Einbau/Reparatur Elektrogeräte",
-        "Einbau/Reparatur Fernseher",
-        "Einbau/Reparatur Küchengeräte",
-        "Elektriker",
-        "Reparatur Waschmaschine",
-        "Sonstige Technik-Elektroarbeiten"
+        "Büroreinigung",
+        "Fensterreinigung",
+        "Glasreinigung",
+        "Haushaltsreinigung",
+        "Haushaltshilfe",
+        "Hausmeister",
+        "Reinigungsservice",
+        "Winterdienst",
+        "Sonstige Hausarbeiten/Reinigungen"
       ]
     },
     {

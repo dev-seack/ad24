@@ -2,8 +2,11 @@ div.container
     div.row
         p.h1.text-center.col-12.section-heading JETZT HANDWERKER FINDEN
         p.text-center.col-12.lead Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam, exercitationem ipsum. Tempore labore dolorum ullam beatae numquam asperiores voluptatibus recusandae quod, harum, provident, dicta molestias ipsa accusantium fugit? Unde, cum.
+   
     form#formDropzone.mt-5(action="/regperson" enctype="multipart/form-data" method="POST")
         div.form-row
+            p.h4.col-12 Was suchst du?
+            hr.col-12.mt-0
             div.form-group.col-12
                 label(for="inputDescription") Auftragsbeschreibung
                 textarea#inputDescription.form-control(type="textarea", rows="5", name="description", required)                    
@@ -21,6 +24,8 @@ div.container
                             option(data-main-category=cat.name, style=( cat != categories[0] ? "display: none;" : false ))= item
         hr
         div.form-row
+            p.h4.col-12 Pers&ouml;nliche Informationen
+            hr.col-12.mt-0
             div.form-group.col-md-6.col-12
                 label(for="inputFirstname") Vorname
                 input#inputFirstname.form-control(type="text", name="firstname", required)
@@ -60,9 +65,12 @@ div.container
                 input#inputDateTo.form-control(type="date", name="dateTo", min=today, value=inOneWeek)
         hr
         div.form-row
-            p.text-muted F&uuml;ge hier optional Bilder hinzu, damit wir uns schonmal einen kleinen &Uuml;berblick verschaffen k&ouml;nnen
-            p.text-muted (Maximal 5 Bilder, die maximal jeweils 3 MB Groß sind)
-            div#personDropzone.dropzone.col-12
+        div.col-12.alert.alert-warning(role='alert')
+            p.pb-0 
+                strong Wichtiger Hinweis zur Nutzung von Auftragsdepot24
+                p.text-justify.mb-0 F&uuml;ge hier optional Bilder hinzu, damit wir uns schonmal einen kleinen &Uuml;berblick verschaffen k&ouml;nnen. (Maximal 5 Bilder, die maximal jeweils 3 MB Groß sind)
+            
+        div#personDropzone.dropzone.col-12
         hr
         div.form-row
             div.form-check
