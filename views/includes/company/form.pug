@@ -2,7 +2,7 @@ div.container
     div.row
         p.h1.text-center.col-12.section-heading JETZT AUFTR&Auml;GE FINDEN
         p.text-center.col-12.lead Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam, exercitationem ipsum. Tempore labore dolorum ullam beatae numquam asperiores voluptatibus recusandae quod, harum, provident, dicta molestias ipsa accusantium fugit? Unde, cum.
-    form.mt-5(action="/regcompany" enctype="multipart/form-data" method="POST")
+    form#formDropzone.mt-5(action="/regcompany" enctype="multipart/form-data" method="POST")
         
         div.form-row
             p.h4.col-12 Kontaktdaten
@@ -14,7 +14,7 @@ div.container
             div.form-group.col-12.col-md-4
                 label(for="inputLegalform") Rechtsform
                 select(name="inputLegalform", required)#inputinputLegalform.form-control
-                    option(selected='selected') Rechtsform
+                    option(value="", selected='selected') Rechtsform auswählen
                     option Natürliche Person / Einzelunternehmen
                     option GmbH
                     option AG
@@ -47,18 +47,37 @@ div.container
                 label(for="inputPhone") Telefonnummer
                 input#inputPhone.form-control(type="phone", name="phone", required)
 
-        hr
-
-        div.form-row
+        div.form-row.mt-5
             p.h4.col-12 Aufgabengebiet
             hr.col-12.mt-0
             div.form-group.col-12
-                label(for="inputMainCategory") Berufsbezeichnung
-                select(name="mainCat", required)#inputMainCategory.form-control
-                    option Maler
-                    option Dachdecker
+                label(for="inputJob") Handwerksbeschreibung
+                select(name="inputJob", required)#inputJob.form-control
+                    option(value="", selected="selected") Handwerksbeschreibung auswählen
+                    option Bautrocknungsgewerbe
+                    option Bodenlegehandwerk
+                    option Dachdeckerhandwerk
+                    option Einbau von genormten Fertigteilen
+                    option Eisenflechter                    
+                    option Elektrotechnik
+                    option Estrichleger
+                    option Fliesen- Platten- und Mosaikleger
+                    option Fugerbetrieb
+                    option Gebäudereinigung
+                    option Gerüstbau       
+                    option Hausmeisterservice             
+                    option Holz- und Bautenschutz
+                    option Heizung- und Sanitär
+                    option Klempner
+                    option Maler- und Lackierer
+                    option Maurer- und Betonhandwerk
+                    option Parkettlegerhandwerk
+                    option Raumausstatter
+                    option Rolladen- und Jalousienbau
+                    option Stukkateur
+                    option Teppichreiniger
                     option Tischler
-                    option Zimmermann
+                    option Zimmererhandwerk                    
             
         hr
         div.form-row
@@ -67,7 +86,7 @@ div.container
                     strong Wichtiger Hinweis zur Nutzung von Auftragsdepot24
                     p.p-2.text-justify Damit Sie Auftragsdepot24 nutzen k&ouml;nnen, m&uuml;ssen Sie eine Kopie Ihres aktuellen Gewerbescheins oder Handelsregisterauszugs einreichen. F&uuml;r qualifizierungspflichtige Ausschreibungen ben&ouml;tigen wir zus&auml;tzlich einen aktuellen Nachweis Ihrer Eintragung in die HWK, IHK oder &auml;hnliche Eintragungen. 
             
-            div#personDropzone.dropzone.col-12
+            div#companyDropzone.dropzone.col-12
         hr
         div.form-row
             div.form-check

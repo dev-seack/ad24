@@ -135,109 +135,88 @@ app.post("/regperson", (req, res) => {
   });
 });
 
-// Register a Person
-app.get("/regperson", (req, res) => {
-  const person_template = {
-    person: {
-      first_name: "Marian",
-      name: "Miller",
-      emails_attributes: [
-        {
-          name: "marian@miller.de",
-          atype: "office"
-        }
-      ],
-      tels_attributes: [
-        {
-          name: "123456789",
-          atype: "office"
-        }
-      ],
-      tags_attributes: [
-        {
-          name: "Online"
-        },
-        {
-          name: "Privat"
-        }
-      ],
-      addrs_attributes: [
-        {
-          zip: "59192",
-          city: "Bergkamen"
-        }
-      ],
-      custom_fields_attributes: [
-        {
-          custom_fields_type_id: 1,
-          attachable_id: "",
-          attachable_type: "Person",
-          name: "Oberkategorie"
-        },
-        {
-          custom_fields_type_id: 2,
-          attachable_id: "",
-          attachable_type: "Person",
-          name: "Unterkategorie"
-        }
-      ],
-      form_content: "this is a short description"
-    }
-  };
-  var person = new Person();
-  person
-    .addPerson(person_template)
-    .then((response) => {
-      if (response.message !== undefined) {
-        res.status(404).send(response.message);
-      } else {
-        res
-          .status(200)
-          .send({ Person: response.Person, Protocol: response.Protocol });
-      }
-    })
-    .catch((e) => {
-      res.send(e);
-    });
-});
-
 // Register a Company
-app.get("/regcompany", (req, res) => {
-  const company_template = {
-    company: {
-      name: "Miller AG",
-      emails_attributes: [
-        {
-          name: "marian@miller.de",
-          atype: "office"
-        }
-      ],
-      tags_attributes: [
-        {
-          name: "Online"
-        }
-      ],
-      form_content: "Bilder Registrierung"
-    }
-  };
-  var company = new Company();
-  company
-    .addCompany(company_template)
-    .then((response) => {
-      if (response.message !== undefined) {
-        res.status(404).send(response.message);
-      } else {
-        res
-          .status(200)
-          .send(
-            { Company: response.Company, Protocol: response.Protocol } ||
-              response
-          );
+app.post("/regcompany", (req, res) => {
+  // parse a file upload
+  var form = new formidable.IncomingForm();
+
+  form.uploadDir = __dirname + "/tmp/form";
+  form.parse(req, function(err, fields, files) {
+    const data = {
+      company: {
+        name: fields.companyname,
+        emails_attributes: [
+          {
+            name: fields.email,
+            atype: "office"
+          }
+        ],
+        tags_attributes: [
+          {
+            name: "Online"
+          }
+        ],
+        tels_attributes: [
+          {
+            name: fields.phone || "",
+            atype: "office"
+          }
+        ],
+        addrs_attributes: [
+          {
+            street: fields.address || "",
+            zip: fields.plz || "",
+            city: fields.city || ""
+          }
+        ],
+        custom_fields_attributes: [
+          {
+            custom_fields_type_id: 31290,
+            name:
+              (fields.firstname || "Herr/Frau") +
+              " " +
+              (fields.lastname || "[Nachname]")
+          },
+          {
+            custom_fields_type_id: 31293,
+            name: fields.inputLegalform || ""
+          },
+          {
+            custom_fields_type_id: 31296,
+            name: fields.inputJob || ""
+          }
+        ],
+        form_content: "Online registriert"
       }
-    })
-    .catch((e) => {
-      res.send(e);
+    };
+
+    // convert 'files' object to array,
+    // containing only the props that start with 'file'
+    const attachmentProps = Object.getOwnPropertyNames(files).filter((prop) =>
+      prop.startsWith("file")
+    );
+    const attachments = attachmentProps.map(function(key) {
+      return files[key];
     });
+    var company = new Company();
+    company
+      .addCompany(data, attachments)
+      .then((response) => {
+        if (response.message !== undefined) {
+          res.status(404).send(response.message);
+        } else {
+          res
+            .status(200)
+            .send(
+              { Company: response.Company, Protocol: response.Protocol } ||
+                response
+            );
+        }
+      })
+      .catch((e) => {
+        res.status(500).send(e);
+      });
+  });
 });
 
 // Newsletter

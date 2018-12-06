@@ -90,11 +90,11 @@ class Person {
 
   async addPerson(person, files) {
     try {
-      // if (
-      //   await this.isPersonExisting(person.person.emails_attributes[0].name)
-      // ) {
-      //   return new Error("Person already exists");
-      // }
+      if (
+        await this.isPersonExisting(person.person.emails_attributes[0].name)
+      ) {
+        return new Error("Person already exists");
+      }
 
       const response = await axios.post(URLS.ADD_PERSON + API, person);
 
@@ -116,11 +116,11 @@ class Person {
             return customResponse;
           })
           .catch((e) => {
-            return e;
+            throw new Error(e);
           });
       }
 
-      return false;
+      throw new Error("Error adding person");
     } catch (e) {
       throw new Error(e);
     }
@@ -143,14 +143,14 @@ class Company {
     this.id = null;
   }
 
-  async addCompany(company) {
+  async addCompany(company, files) {
     try {
       if (
         await this.isCompanyExisting(company.company.emails_attributes[0].name)
       ) {
         return new Error("Company already exists");
       }
-
+      console.log(company);
       const response = await axios.post(URLS.ADD_COMPANY + API, company);
 
       if (response.status === 201) {
@@ -160,14 +160,14 @@ class Company {
         customResponse["Company"] = response.data.company;
 
         // create attachments ...
-
         // create new protocol for this company
         const data = new Data(
           company.company.form_content,
-          ["1", "2"],
+          files,
           null,
           this.id
         );
+        console.log("exists2");
         return await data
           .addProtocol()
           .then((p) => {
@@ -175,11 +175,12 @@ class Company {
             return customResponse;
           })
           .catch((e) => {
-            return e;
+            throw new Error(e);
           });
       }
-      return false;
+      throw new Error("Error adding company");
     } catch (e) {
+      console.log(e);
       throw new Error(e);
     }
   }
