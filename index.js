@@ -266,8 +266,8 @@ app.get("/nsend", (req, res) => {
     from: `"Newsletter" <${mail.absender}> - ${type}`, // sender address
     to: mail.empfaenger, // list of receivers
     subject: mail.betreff, // Subject line
-    text: `Ein Benutzer (${type}) hat sich angemeldet. Erreiche ihn unter: ${email}`,
-    html: `<p>Ein Benutzer <b>(${type})</b> hat sich angemeldet.</p><p>Erreiche ihn unter: ${email}</p>`
+    text: `Ein Benutzer hat eine Nachricht gesendet. Betreff: ${type} Erreiche ihn unter: ${email}`,
+    html: `<p>Ein Benutzer hat eine Nachricht gesendet.</p><p>Betreff: <b>${type}</b></p><p>Erreiche ihn unter: ${email}</p>`
   };
 
   // send mail with defined transport object

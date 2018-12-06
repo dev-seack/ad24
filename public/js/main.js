@@ -41,7 +41,8 @@ $(function() {
         // toast - success
         iziToast.success({
           title: "Erfolgreich!",
-          message: "Vielen Dank für Ihr Interesse"
+          message: "Vielen Dank für Ihre Nachricht",
+          position: "bottomCenter"
         });
       })
       // fail
@@ -49,7 +50,8 @@ $(function() {
         // toast - fail
         iziToast.error({
           title: "Mhh..",
-          message: "Irgendwas ist schief gelaufen"
+          message: "Irgendwas ist schief gelaufen",
+          position: "bottomCenter"
         });
       });
     return false;

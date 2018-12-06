@@ -26,10 +26,16 @@
 
     .text
         quotes: "“" "”" "‘" "’"
+    .text:after, .text:before
+        font-size: 1.5em
+        font-weight: 700
+        color: ad-blue
     .text:before
-        content: open-quote;
+        content: open-quote
+        margin-right: .25rem
     .text:after
-        content: close-quote;
+        content: close-quote
+        margin-left: .25rem
 
     .rating
         span

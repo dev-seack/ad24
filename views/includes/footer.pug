@@ -23,6 +23,13 @@ footer
         hr.big
 
         div.row
+            p.h5.text-center.mb-4 Sie wollen unseren Newsletter abbestellen? Tragen Sie hier Ihre Emailadresse ein und wir werden Ihnen keine Neuigkeiten mehr zusenden.
+            include snippets/newsletter
+            +newsletter("Newsletter Abbestellen", "Jetzt abbestellen")
+
+        hr.big
+
+        div.row
             p.lead.font-weight-bold.col-12.text-uppercase.text-center Erstellt von 1317 - Digital Marketing
             span.col-sm-6.col-md-4.lead.font-weight-bold.text-uppercase.text-center
                 a.text-white(href="/impressum") Impressum
