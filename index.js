@@ -99,6 +99,18 @@ app.post("/regperson", (req, res) => {
             attachable_id: "",
             attachable_type: "Person",
             name: fields.secCat || ""
+          },
+          {
+            custom_fields_type_id: 3,
+            attachable_id: "",
+            attachable_type: "Person",
+            name: fields.budget || ""
+          },
+          {
+            custom_fields_type_id: 4,
+            attachable_id: "",
+            attachable_type: "Person",
+            name: fields.dateFrom + " - " + fields.dateTo || "" // Zeitraum
           }
         ],
         form_content: fields.description || ""
