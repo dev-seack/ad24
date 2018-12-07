@@ -32,7 +32,8 @@
     "nodemon": "^1.18.7",
     "pug": "^2.0.3",
     "stylus": "^0.54.5",
-    "validator": "^10.9.0"
+    "validator": "^10.9.0",
+    "zip-to-city": "^0.1.1"
   },
   "engines": {
     "node": "10.12.0"

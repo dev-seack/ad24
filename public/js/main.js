@@ -1,8 +1,21 @@
+const zipToCity = require("zip-to-city");
+
 $(function() {
   // Reload in the middle of the page???
   if ($(this).scrollTop() > 0) {
     $(".navbar, .navbar-brand").addClass("scrolled");
   }
+
+  // enter city when plz is typed in
+  $("#inputPLZ").keyup(function() {
+    const city = zipToCity($(this).val());
+
+    if (city !== null) {
+      $("#inputCity").val(city);
+    } else {
+      $("#inputCity").val("Postleitzahl ungültig...");
+    }
+  });
 
   // change sub_categorie dropdown on change main_category
   $("#inputMainCategory").change(function() {

@@ -66,7 +66,7 @@ app.post("/regperson", (req, res) => {
         name: fields.lastname || "",
         emails_attributes: [
           {
-            name: fields.emaail || "",
+            name: fields.email || "",
             atype: "office"
           }
         ],
@@ -89,28 +89,20 @@ app.post("/regperson", (req, res) => {
         ],
         custom_fields_attributes: [
           {
-            custom_fields_type_id: 1,
-            attachable_id: "",
-            attachable_type: "Person",
+            custom_fields_type_id: 6237030,
             name: fields.mainCat || ""
           },
           {
-            custom_fields_type_id: 2,
-            attachable_id: "",
-            attachable_type: "Person",
+            custom_fields_type_id: 6237033,
             name: fields.secCat || ""
           },
           {
-            custom_fields_type_id: 3,
-            attachable_id: "",
-            attachable_type: "Person",
+            custom_fields_type_id: 6237036,
             name: fields.budget || ""
           },
           {
-            custom_fields_type_id: 4,
-            attachable_id: "",
-            attachable_type: "Person",
-            name: fields.dateFrom + " - " + fields.dateTo || "" // Zeitraum
+            custom_fields_type_id: 6237039,
+            name: fields.dateFrom + " - " + fields.dateTo || ""
           }
         ],
         form_content: fields.description || ""
@@ -130,12 +122,14 @@ app.post("/regperson", (req, res) => {
     person
       .addPerson(data, attachments)
       .then((response) => {
-        if (response.message !== undefined) {
-          res.status(404).send(response.message);
-        } else {
+        console.log(response);
+
+        if (response.Person) {
           res
             .status(200)
             .send({ Person: response.Person, Protocol: response.Protocol });
+        } else {
+          res.status(404).send(response.message);
         }
       })
       .catch((e) => {
