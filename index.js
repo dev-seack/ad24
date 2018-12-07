@@ -79,9 +79,6 @@ app.post("/regperson", (req, res) => {
         tags_attributes: [
           {
             name: "Online"
-          },
-          {
-            name: "Privat"
           }
         ],
         addrs_attributes: [

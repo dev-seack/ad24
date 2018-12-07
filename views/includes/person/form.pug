@@ -22,8 +22,8 @@ div.container
                     for cat in categories
                         for item in cat.sub_categories
                             option(data-main-category=cat.name, style=( cat != categories[0] ? "display: none;" : false ))= item
-        hr
-        div.form-row
+        
+        div.form-row.mt-5
             p.h4.col-12 Pers&ouml;nliche Informationen
             hr.col-12.mt-0
             div.form-group.col-md-6.col-12
@@ -75,8 +75,8 @@ div.container
         div.form-row
             div.form-check
                 input#checkbox.form-check-input(type="checkbox", required)
-                label.form-check-label(for="checkbox") Hiermit best&auml;tige ich, dass ich die Datenschutzerkl&auml;rung gelesen habe und den AGB's zustimme
+                label.form-check-label(for="checkbox") Hiermit best&auml;tige ich, dass ich die Datenschutzerkl&auml;rung gelesen habe und den AGB zustimme
         div.row.mt-5.pt-5
-            button.col-12.col-sm-12.col-lg-4.btn.ad-primary-btn.ad-red-btn.m-auto.auftrag(href="#", type="submit") 
+            button.col-12.col-sm-12.col-lg-4.btn.ad-primary-btn.ad-red-btn.m-auto.auftrag(type="submit") 
                 span Anfrage absenden
         

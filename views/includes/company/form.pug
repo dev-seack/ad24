@@ -54,7 +54,10 @@ div.container
                 label(for="inputJob") Handwerksbeschreibung
                 select(name="inputJob", required)#inputJob.form-control
                     option(value="", selected="selected") Handwerksbeschreibung auswählen
+                    option Abbrucharbeiten 
+                    option Baggerarbeiten 
                     option Bautrocknungsgewerbe
+                    option Bausanierung
                     option Bodenlegehandwerk
                     option Dachdeckerhandwerk
                     option Einbau von genormten Fertigteilen
@@ -63,21 +66,30 @@ div.container
                     option Estrichleger
                     option Fliesen- Platten- und Mosaikleger
                     option Fugerbetrieb
+                    option Garten- Landschaftsbau
+                    option Gärtner
                     option Gebäudereinigung
                     option Gerüstbau       
                     option Hausmeisterservice             
                     option Holz- und Bautenschutz
                     option Heizung- und Sanitär
                     option Klempner
+                    option Klimatechnik
                     option Maler- und Lackierer
                     option Maurer- und Betonhandwerk
                     option Parkettlegerhandwerk
+                    option Pflasterbau
                     option Raumausstatter
                     option Rolladen- und Jalousienbau
+                    option Schreiner
+                    option Straßenbau
                     option Stukkateur
                     option Teppichreiniger
+                    option Tiefbau
                     option Tischler
-                    option Zimmererhandwerk                    
+                    option Trockenbau, Akustikbau
+                    option Zimmererhandwerk   
+                    option Sonstiges Handwerk                                     
             
         hr
         div.form-row
@@ -91,9 +103,9 @@ div.container
         div.form-row
             div.form-check
                 input#checkbox.form-check-input(type="checkbox", required)
-                label.form-check-label(for="checkbox") Hiermit best&auml;tige ich, dass ich die Datenschutzerkl&auml;rung gelesen habe und den AGB's zustimme
+                label.form-check-label(for="checkbox") Hiermit best&auml;tige ich, dass ich die Datenschutzerkl&auml;rung gelesen habe und den AGB zustimme
         div.row.mt-5.pt-5.pl-3.pr-3
-            button.col-12.col-sm-12.col-md-4.btn.ad-primary-btn.ad-red-btn.m-md-auto.auftrag.mb-5(href="#", type="submit") 
+            button.col-12.col-sm-12.col-md-4.btn.ad-primary-btn.ad-red-btn.m-md-auto.auftrag.mb-5(type="submit") 
                 span Anfrage absenden
             button.col-12.col-sm-12.col-md-4.btn.ad-primary-btn.ad-blue-btn.m-md-auto.handwerker.mb-5(href="#", type="submit") 
                 span E-Payment
