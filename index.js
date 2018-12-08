@@ -39,7 +39,14 @@ app.get("/", (req, res) => {
   res.render("index", { title: "Home" });
 });
 
-app.get("/person", (req, res) => {
+app.get("/auftragsdepot24-agb", (req, res) => {
+  res.render("subpages/agb", {
+    title: "AGB",
+    today: moment().format("DD.MM.YYYY")
+  });
+});
+
+app.get("/handwerker-finden", (req, res) => {
   res.render("person", {
     title: "Handwerker finden",
     categories: categories,
@@ -50,11 +57,11 @@ app.get("/person", (req, res) => {
   });
 });
 
-app.get("/company", (req, res) => {
+app.get("/auftraege-finden", (req, res) => {
   res.render("company", { title: "Auftrag suchen" });
 });
 
-app.post("/regperson", (req, res) => {
+app.post("/person-registrieren", (req, res) => {
   // parse a file upload
   var form = new formidable.IncomingForm();
 
@@ -89,19 +96,19 @@ app.post("/regperson", (req, res) => {
         ],
         custom_fields_attributes: [
           {
-            custom_fields_type_id: 6237030,
+            custom_fields_type_id: 31437,
             name: fields.mainCat || ""
           },
           {
-            custom_fields_type_id: 6237033,
+            custom_fields_type_id: 31440,
             name: fields.secCat || ""
           },
           {
-            custom_fields_type_id: 6237036,
-            name: fields.budget || ""
+            custom_fields_type_id: 31443,
+            name: fields.budget || "Nicht angegeben"
           },
           {
-            custom_fields_type_id: 6237039,
+            custom_fields_type_id: 31446,
             name: fields.dateFrom + " - " + fields.dateTo || ""
           }
         ],
@@ -122,8 +129,6 @@ app.post("/regperson", (req, res) => {
     person
       .addPerson(data, attachments)
       .then((response) => {
-        console.log(response);
-
         if (response.Person) {
           res
             .status(200)
@@ -133,13 +138,13 @@ app.post("/regperson", (req, res) => {
         }
       })
       .catch((e) => {
-        res.send(e);
+        res.status(500).send(e);
       });
   });
 });
 
 // Register a Company
-app.post("/regcompany", (req, res) => {
+app.post("/handwerker-registrieren", (req, res) => {
   // parse a file upload
   var form = new formidable.IncomingForm();
 

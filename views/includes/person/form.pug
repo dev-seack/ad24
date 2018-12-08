@@ -3,7 +3,7 @@ div.container
         p.h1.text-center.col-12.section-heading JETZT HANDWERKER FINDEN
         p.text-center.col-12.lead Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam, exercitationem ipsum. Tempore labore dolorum ullam beatae numquam asperiores voluptatibus recusandae quod, harum, provident, dicta molestias ipsa accusantium fugit? Unde, cum.
    
-    form#formDropzone.mt-5(action="/regperson" enctype="multipart/form-data" method="POST")
+    form#formDropzone.mt-5(action="/handwerker-finden-registrieren" enctype="multipart/form-data" method="POST")
         div.form-row
             p.h4.col-12 Was suchst du?
             hr.col-12.mt-0
@@ -12,13 +12,15 @@ div.container
                 textarea#inputDescription.form-control(type="textarea", rows="5", name="description", required)
         div.form-row
             div.form-group.col-12.col-md-6
-                label(for="inputMainCategory") Hauptkategorie
+                label(for="inputMainCategory") Oberkategorie
                 select(name="mainCat", required)#inputMainCategory.form-control
+                    option(value="", selected="selected", disabled) Oberkategorie auswählen
                     for item in categories
                         option= item.name
             div.form-group.col-12.col-md-6
                 label(for="inputSecondaryCategory") Unterkategorie
                 select(name="secCat" ,required)#inputSubCategory.form-control
+                    option(value="", selected="selected", disabled) Unterkategorie auswählen
                     for cat in categories
                         for item in cat.sub_categories
                             option(data-main-category=cat.name, style=( cat != categories[0] ? "display: none;" : false ))= item

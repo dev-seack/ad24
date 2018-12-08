@@ -2,7 +2,7 @@ div.container
     div.row
         p.h1.text-center.col-12.section-heading JETZT AUFTR&Auml;GE FINDEN
         p.text-center.col-12.lead Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam, exercitationem ipsum. Tempore labore dolorum ullam beatae numquam asperiores voluptatibus recusandae quod, harum, provident, dicta molestias ipsa accusantium fugit? Unde, cum.
-    form#formDropzone.mt-5(action="/regcompany" enctype="multipart/form-data" method="POST")
+    form#formDropzone.mt-5(action="/handwerker-registrieren" enctype="multipart/form-data" method="POST")
         
         div.form-row
             p.h4.col-12 Kontaktdaten
@@ -14,7 +14,7 @@ div.container
             div.form-group.col-12.col-md-4
                 label(for="inputLegalform") Rechtsform
                 select(name="inputLegalform", required)#inputinputLegalform.form-control
-                    option(value="", selected='selected') Rechtsform auswählen
+                    option(value="", selected='selected', disabled) Rechtsform auswählen
                     option Natürliche Person / Einzelunternehmen
                     option GmbH
                     option AG

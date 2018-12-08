@@ -23,17 +23,22 @@ footer
         hr.big
 
         div.row
-            p.h5.text-center.mb-4 Sie wollen unseren Newsletter abbestellen? Tragen Sie hier Ihre Emailadresse ein und wir werden Ihnen keine Neuigkeiten mehr zusenden.
-            include snippets/newsletter
-            +newsletter("Newsletter Abbestellen", "Jetzt abbestellen")
+            p.h5.text-center.mb-4.col-12.col Sie wollen unseren Newsletter abbestellen? Tragen Sie hier Ihre Emailadresse ein und wir werden Ihnen keine Neuigkeiten mehr zusenden.
+            .newsletter-container.fullWidth
+                form.newsletter-form(action="nsend", method="post")
+                    div.row
+                        input(type="hidden", name="type", value="Newsletter abbestellen")
+                        div.input-group
+                            input.col-12.col-lg-6.offset-lg-3.form-control(type="email", placeholder="Emailadresse...", name="email")
+                    div.row.mt-3
+                        button.col-12.col-sm-12.col-lg-4.btn.ad-primary-btn.ad-red-btn.m-auto.kontakt
+                            span.text-uppercase Newsletter abbestellen
 
         hr.big
 
         div.row
             p.lead.font-weight-bold.col-12.text-uppercase.text-center Erstellt von 1317 - Digital Marketing
-            span.col-sm-6.col-md-4.lead.font-weight-bold.text-uppercase.text-center
-                a.text-white(href="/impressum") Impressum
-            span.col-sm-6.col-md-4.lead.font-weight-bold.text-uppercase.text-center
-                a.text-white(href="/agb") AGB's
-            span.col-sm-6.col-md-4.lead.font-weight-bold.text-uppercase.text-center
-                a.text-white(href="/datenschutz") Datenschutzerkl&auml;rung
+            span.col-sm-6.lead.font-weight-bold.text-uppercase.text-center
+                a.text-white(href="/auftragsdepot24-impressum") Impressum
+            span.col-sm-6.lead.font-weight-bold.text-uppercase.text-center
+                a.text-white(href="/auftragsdepot24-agb") AGB

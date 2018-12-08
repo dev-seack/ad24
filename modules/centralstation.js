@@ -93,7 +93,7 @@ class Person {
       if (
         await this.isPersonExisting(person.person.emails_attributes[0].name)
       ) {
-        return new Error("Person already exists");
+        return new Error("Person mit dieser Email existiert bereits!");
       }
 
       const response = await axios.post(URLS.ADD_PERSON + API, person);
@@ -148,7 +148,7 @@ class Company {
       if (
         await this.isCompanyExisting(company.company.emails_attributes[0].name)
       ) {
-        return new Error("Company already exists");
+        return new Error("Handwerker mit dieser Email existiert bereits!");
       }
       const response = await axios.post(URLS.ADD_COMPANY + API, company);
 

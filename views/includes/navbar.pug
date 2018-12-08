@@ -1,23 +1,22 @@
-mixin navbar(sidename)
-    
-        if sidename == "person"
-            nav.navbar.scrolled
-                a.navbar-brand.scrolled(href="/")
-                    img(src="/assets/icons/logo.svg", alt="")
-                    span.navbar-slogan Sicherheit Exklusivit&auml;t Erfolg
-                a.landing-btn.ad-primary-btn.ad-blue-btn.auftrag(href="/company") 
-                    span Auftr&auml;ge suchen
-        else if sidename == "company"
-            nav.navbar.scrolled
-                a.navbar-brand.scrolled(href="/")
-                    img(src="/assets/icons/logo.svg", alt="")
-                    span.navbar-slogan Sicherheit Exklusivit&auml;t Erfolg
-                a.landing-btn.ad-primary-btn.ad-red-btn.handwerker(href="/person") 
-                    span Handwerker suchen
-        else if sidename == "index"
-            nav.navbar
-                a.navbar-brand(href="/")
-                    img(src="/assets/icons/logo.svg", alt="")
-                    span.navbar-slogan Sicherheit Exklusivit&auml;t Erfolg
-                a.landing-btn.ad-primary-btn.ad-blue-btn.auftrag(href="/company") 
-                    span Auftr&auml;ge suchen
+mixin navbar(sidename)    
+    if sidename == "person"
+        nav.navbar.scrolled
+            a.navbar-brand.scrolled(href="/")
+                img(src="/assets/icons/logo.svg", alt="")
+                span.navbar-slogan Sicherheit Exklusivit&auml;t Erfolg
+            a.landing-btn.ad-primary-btn.ad-blue-btn.auftrag(href="/auftraege-finden") 
+                span Auftr&auml;ge suchen
+    else if sidename == "company"
+        nav.navbar.scrolled
+            a.navbar-brand.scrolled(href="/")
+                img(src="/assets/icons/logo.svg", alt="")
+                span.navbar-slogan Sicherheit Exklusivit&auml;t Erfolg
+            a.landing-btn.ad-primary-btn.ad-red-btn.handwerker(href="/handwerker-finden") 
+                span Handwerker suchen
+    else if sidename == "index"
+        nav.navbar
+            a.navbar-brand(href="/")
+                img(src="/assets/icons/logo.svg", alt="")
+                span.navbar-slogan Sicherheit Exklusivit&auml;t Erfolg
+            a.landing-btn.ad-primary-btn.ad-blue-btn.auftrag(href="/auftraege-finden") 
+                span Auftr&auml;ge suchen
