@@ -46,6 +46,13 @@ app.get("/auftragsdepot24-agb", (req, res) => {
   });
 });
 
+app.get("/auftragsdepot24-impressum", (req, res) => {
+  res.render("subpages/impressum", {
+    title: "Impressum",
+    today: moment().format("DD.MM.YYYY")
+  });
+});
+
 app.get("/handwerker-finden", (req, res) => {
   res.render("person", {
     title: "Handwerker finden",
