@@ -43,13 +43,18 @@
   font-weight: 900;
 }
 .ad-primary-btn.handwerker:before {
-  content: "\f6e3";
+  content: '\f6e3';
 }
 .ad-primary-btn.auftrag:before {
-  content: "\f15c";
+  content: '\f15c';
 }
 .ad-primary-btn.kontakt:before {
-  content: "\f0e0";
+  content: '\f0e0';
+}
+.icon:before,
+.icon:after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 700;
 }
 .ad-blue-btn {
   background: #2d619b;
@@ -66,13 +71,13 @@
   right: 0;
   width: 100vw;
   height: 100px;
-  background-image: linear-gradient(rgba(255, 255, 255, 0), #fff);
+  background-image: linear-gradient(rgba(255,255,255,0), #fff);
 }
 .section-heading {
   letter-spacing: 1.5px;
 }
 .section-heading:after {
-  content: "";
+  content: '';
   background: #2d619b;
   height: 5px;
   width: 100px;
@@ -87,11 +92,6 @@ button,
 a.btn {
   cursor: pointer;
 }
-
-p {
-  width: 100%;
-}
-
 .container {
   margin-top: 5.5rem;
   margin-bottom: 175px;
@@ -105,6 +105,10 @@ p {
 hr.big {
   border-top: 1px solid #fff;
 }
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
 .navbar {
   position: fixed;
   top: 0;
@@ -112,14 +116,14 @@ hr.big {
   width: 100%;
   height: 70px;
   padding: 0;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255,255,255,0.6);
   transition: background 0.3s;
   box-shadow: none;
 }
 .navbar.scrolled {
   transition: all 0.3s;
   background: #fff;
-  box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 50px 0px rgba(0,0,0,0.3);
 }
 .navbar .navbar-brand {
   position: relative;
@@ -163,7 +167,7 @@ hr.big {
   width: 100vw;
   top: 70px;
   bottom: 0;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255,255,255,0.6);
   z-index: 5;
 }
 .landing-container .landing-overlay-left,
@@ -220,13 +224,11 @@ hr.big {
     height: calc(100vh - 70px);
     bottom: 0;
     right: 300px;
-    background: url("/assets/landing/landingoverlay-left.svg") right top
-      no-repeat;
+    background: url("/assets/landing/landingoverlay-left.svg") right top no-repeat;
     background-size: cover;
   }
   .landing-container .landing-overlay-right {
-    background: url("/assets/landing/landingoverlay-right.svg") right bottom
-      no-repeat;
+    background: url("/assets/landing/landingoverlay-right.svg") right bottom no-repeat;
     background-size: initial;
     bottom: 0;
     right: 0;
@@ -251,13 +253,28 @@ hr.big {
   margin-bottom: 2rem;
   position: relative;
 }
-.card-icon img {
+.card-icon .icon {
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
   bottom: 0;
   margin: auto;
+  font-size: 85px;
+  color: #fff;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  padding: 15px 0;
+}
+.card-icon .icon.secure-icon:before {
+  content: '\f3ed';
+}
+.card-icon .icon.exclusive-icon:before {
+  content: '\f3a5';
+}
+.card-icon .icon.success-icon:before {
+  content: '\f4c4';
 }
 .testimonials-outer-container {
   background: url("/assets/icons/werkzeug_bg.svg") center center no-repeat;
@@ -351,6 +368,9 @@ footer {
   color: #fff;
   z-index: 995;
 }
+footer .lead {
+  letter-spacing: 4px;
+}
 .dropzone {
   border: 3px solid #ced4da !important;
   border-radius: 0.25rem;
@@ -358,13 +378,13 @@ footer {
 .header-container {
   background: url("/assets/person/header_bg.jpg") center center no-repeat fixed;
   background-size: cover;
-  width: 100vw;
+  width: 100%;
   height: 400px;
 }
 .header-container .content-container {
   margin-top: 70px;
   padding: 70px 3rem;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255,255,255,0.6);
 }
 .header-container .content-container .form-header-heading {
   font-size: 3em;
