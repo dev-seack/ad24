@@ -1,9 +1,11 @@
 div.container
     div.row
-        p.h1.text-center.col-12.section-heading JETZT AUFTR&Auml;GE FINDEN
-        p.text-center.col-12.lead Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam, exercitationem ipsum. Tempore labore dolorum ullam beatae numquam asperiores voluptatibus recusandae quod, harum, provident, dicta molestias ipsa accusantium fugit? Unde, cum.
+        p.h1.text-center.col-12.section-heading JETZT AUFTR&Auml;GE SICHERN
+        p.text-center.col-12.lead Anmeldeformular ausfüllen oder mit dem Testpaket sofort starten!
+    div.row.mt-4.mb-5
+        a.col-12.col-sm-12.col-lg-4.btn.ad-primary-btn.ad-blue-btn.m-auto.handwerker(href="#")
+            span Zum Testpaket
     form#formDropzone.mt-5(action="/handwerker-registrieren" enctype="multipart/form-data" method="POST")
-        
         div.form-row
             p.h4.col-12 Kontaktdaten
             hr.col-12.mt-0
@@ -107,6 +109,4 @@ div.container
         div.row.mt-5.pt-5.pl-3.pr-3
             button.col-12.col-sm-12.col-md-4.btn.ad-primary-btn.ad-red-btn.m-md-auto.auftrag.mb-5(type="submit") 
                 span Anfrage absenden
-            button.col-12.col-sm-12.col-md-4.btn.ad-primary-btn.ad-blue-btn.m-md-auto.handwerker.mb-5(href="#", type="submit") 
-                span E-Payment
         
