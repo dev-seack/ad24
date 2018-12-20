@@ -59,12 +59,12 @@ div.container
                 label(for="inputDateFrom") 
                     span Zeitraum - Von 
                     span.text-muted (optional)
-                input#inputDateFrom.form-control(type="date", name="dateFrom", min=today, value=today)
+                input#inputDateFrom.form-control(type="date", name="dateFrom", min=today, value=today, required)
             div.form-group.col-6
                 label(for="inputDateTo") 
                     span Zeitraum - Bis 
                     span.text-muted (optional)
-                input#inputDateTo.form-control(type="date", name="dateTo", min=today, value=inOneWeek)
+                input#inputDateTo.form-control(type="date", name="dateTo", min=today, value=inOneWeek, required)
         hr
         div.form-row
         div.col-12.alert.alert-warning(role='alert')

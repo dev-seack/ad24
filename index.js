@@ -65,7 +65,7 @@ app.get("/handwerker-finden", (req, res) => {
 });
 
 app.get("/auftraege-finden", (req, res) => {
-  res.render("company", { title: "Auftrag suchen" });
+  res.render("company", { title: "Aufträge finden" });
 });
 
 app.post("/person-registrieren", (req, res) => {
@@ -197,7 +197,7 @@ app.post("/handwerker-registrieren", (req, res) => {
             name: fields.inputLegalform || ""
           },
           {
-            custom_fields_type_id: 31296,
+            custom_fields_type_id: 31863,
             name: fields.inputJob || ""
           }
         ],
@@ -213,19 +213,22 @@ app.post("/handwerker-registrieren", (req, res) => {
     const attachments = attachmentProps.map(function(key) {
       return files[key];
     });
+
+    console.log("before creating: " + JSON.stringify(data, undefined, 2));
+
     var company = new Company();
     company
       .addCompany(data, attachments)
       .then((response) => {
-        if (response.message !== undefined) {
-          res.status(404).send(response.message);
-        } else {
+        if (response.Company) {
           res
             .status(200)
             .send(
               { Company: response.Company, Protocol: response.Protocol } ||
                 response
             );
+        } else {
+          res.status(404).send(response.message);
         }
       })
       .catch((e) => {
