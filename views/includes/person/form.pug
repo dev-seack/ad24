@@ -4,12 +4,8 @@ div.container
         p.text-center.col-12.lead Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam, exercitationem ipsum. Tempore labore dolorum ullam beatae numquam asperiores voluptatibus recusandae quod, harum, provident, dicta molestias ipsa accusantium fugit? Unde, cum.
    
     form#formDropzone.mt-5(action="/handwerker-finden-registrieren" enctype="multipart/form-data" method="POST")
-        div.form-row
-            p.h4.col-12 Was suchst du?
-            hr.col-12.mt-0
-            div.form-group.col-12
-                label(for="inputDescription") Auftragsbeschreibung
-                textarea#inputDescription.form-control(type="textarea", rows="5", name="description", required)
+        p.h4.col-12.p-0 Was suchst du?
+        hr.col-12.mt-0
         div.form-row
             div.form-group.col-12.col-md-6
                 label(for="inputMainCategory") Oberkategorie
@@ -24,7 +20,39 @@ div.container
                     for cat in categories
                         for item in cat.sub_categories
                             option(data-main-category=cat.name, style=( cat != categories[0] ? "display: none;" : false ))= item
+
+        div.form-row
+            div.form-group.col-md-4
+                label(for="inputDateFrom") 
+                    span Zeitraum - Von 
+                    span.text-muted (optional)
+                input#inputDateFrom.form-control(type="date", name="dateFrom", min=today, value=today, required)
+            div.form-group.col-md-4
+                label(for="inputDateTo") 
+                    span Zeitraum - Bis 
+                    span.text-muted (optional)
+                input#inputDateTo.form-control(type="date", name="dateTo", min=today, value=inOneWeek, required)
+            div.form-group.col-6.col-md-4
+                label(for="inputBudget") 
+                    span Budget 
+                    span.text-muted (optional)
+                input#inputBudget.form-control(type="number", name="budget")
+
+        div.form-row            
+            div.form-group.col-12
+                label(for="inputDescription") Auftragsbeschreibung
+                textarea#inputDescription.form-control(type="textarea", rows="5", name="description", required)
+
         
+        p.h4.col-12.p-0.mt-5 Bilder deiner Baustelle
+            hr.col-12.mt-0
+        div#personDropzone.dropzone.col-12.mt-4
+        div.form-row.mt-2.p-1
+            div.p-2.col-12.alert.alert-warning(role='alert')
+                p.pb-0 
+                    strong Wichtiger Hinweis zur Nutzung von Auftragsdepot24
+                    p.text-justify.mb-0 F&uuml;ge hier optional Bilder hinzu, damit wir uns schonmal einen kleinen &Uuml;berblick verschaffen k&ouml;nnen. (Maximal 5 Bilder, die maximal jeweils 3 MB Groß sind)        
+
         div.form-row.mt-5
             p.h4.col-12 Pers&ouml;nliche Informationen
             hr.col-12.mt-0
@@ -47,32 +75,9 @@ div.container
             div.form-group.col-6.col-md-4
                 label(for="inputPLZ") Postleitzahl
                 input#inputPLZ.form-control(type="number", name="plz", required)
-            div.form-group.col-6.col-md-4
+            div.form-group.col-6.col-md-8
                 label(for="inputCity") Ort
-                input#inputCity.form-control(type="text", name="city", disabled, required)
-            div.form-group.col-6.col-md-4
-                label(for="inputBudget") 
-                    span Budget 
-                    span.text-muted (optional)
-                input#inputBudget.form-control(type="number", name="budget")
-            div.form-group.col-6
-                label(for="inputDateFrom") 
-                    span Zeitraum - Von 
-                    span.text-muted (optional)
-                input#inputDateFrom.form-control(type="date", name="dateFrom", min=today, value=today, required)
-            div.form-group.col-6
-                label(for="inputDateTo") 
-                    span Zeitraum - Bis 
-                    span.text-muted (optional)
-                input#inputDateTo.form-control(type="date", name="dateTo", min=today, value=inOneWeek, required)
-        hr
-        div.form-row
-        div.col-12.alert.alert-warning(role='alert')
-            p.pb-0 
-                strong Wichtiger Hinweis zur Nutzung von Auftragsdepot24
-                p.text-justify.mb-0 F&uuml;ge hier optional Bilder hinzu, damit wir uns schonmal einen kleinen &Uuml;berblick verschaffen k&ouml;nnen. (Maximal 5 Bilder, die maximal jeweils 3 MB Groß sind)
-            
-        div#personDropzone.dropzone.col-12
+                input#inputCity.form-control(type="text", name="city", disabled, required)                        
         hr
         div.form-row
             div.form-check
