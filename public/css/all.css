@@ -15,6 +15,7 @@
   border-radius: 0;
   overflow: hidden;
   width: 100%;
+  padding: 0 1em;
   max-width: 300px;
 }
 .ad-primary-btn:hover {
@@ -378,8 +379,6 @@ footer .lead {
   border-radius: 0.25rem;
 }
 .header-container {
-  background: url("/assets/person/header_bg.jpg") center center no-repeat fixed;
-  background-size: cover;
   width: 100%;
   height: 400px;
 }
@@ -391,6 +390,14 @@ footer .lead {
 .header-container .content-container .form-header-heading {
   font-size: 3em;
   letter-spacing: 5px;
+}
+.header-container.person {
+  background: url("/assets/person/header_bg.jpg") center center no-repeat fixed;
+  background-size: cover;
+}
+.header-container.company {
+  background: url("/assets/company/header_bg.jpg") center center no-repeat fixed;
+  background-size: cover;
 }
 .newsletter-form > .row > .input-group > input {
   -webkit-transition: all 0.3s ease-in-out;
