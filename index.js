@@ -36,20 +36,22 @@ app.use(express.static(publicDir));
 
 // Pages
 app.get("/", (req, res) => {
-  res.render("index", { title: "Home" });
+  res.render("index", { title: "Home", year: moment().format("YYYY") });
 });
 
 app.get("/auftragsdepot24-agb", (req, res) => {
   res.render("subpages/agb", {
     title: "AGB",
-    today: moment().format("DD.MM.YYYY")
+    today: moment().format("DD.MM.YYYY"),
+    year: moment().format("YYYY")
   });
 });
 
 app.get("/auftragsdepot24-impressum", (req, res) => {
   res.render("subpages/impressum", {
     title: "Impressum",
-    today: moment().format("DD.MM.YYYY")
+    today: moment().format("DD.MM.YYYY"),
+    year: moment().format("YYYY")
   });
 });
 
@@ -57,6 +59,7 @@ app.get("/handwerker-finden", (req, res) => {
   res.render("person", {
     title: "Handwerker finden",
     categories: categories,
+    year: moment().format("YYYY"),
     today: moment().format("YYYY-MM-DD"),
     inOneWeek: moment()
       .day(7)
@@ -65,7 +68,10 @@ app.get("/handwerker-finden", (req, res) => {
 });
 
 app.get("/auftraege-finden", (req, res) => {
-  res.render("company", { title: "Aufträge finden" });
+  res.render("company", {
+    title: "Aufträge finden",
+    year: moment().format("YYYY")
+  });
 });
 
 app.post("/person-registrieren", (req, res) => {
