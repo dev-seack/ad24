@@ -24,13 +24,13 @@ footer
 
         div.row
             p.text-center.mb-4.col-12.col Sie wollen unseren Newsletter abbestellen? Tragen Sie hier Ihre Emailadresse ein und wir werden Ihnen keine Neuigkeiten mehr zusenden.
-            .newsletter-container.fullWidth
+            .newsletter-container.fullWidth.col-12.col
                 form.newsletter-form(action="nsend", method="post")
-                    div.row
+                    div
                         input(type="hidden", name="type", value="Newsletter abbestellen")
                         div.input-group
                             input.col-12.col-lg-6.offset-lg-3.form-control(type="email", placeholder="Emailadresse...", name="email")
-                    div.row.mt-3
+                    div.mt-3.text-center
                         button.col-12.col-sm-12.col-lg-4.btn.m-auto.kontakt.ad-red-btn.text-white
                             span.text-uppercase Newsletter abbestellen
 

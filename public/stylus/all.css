@@ -35,13 +35,6 @@
   height: 100%;
   transition: 0.3s all;
 }
-.ad-primary-btn.nav-btn {
-  max-width: 250px;
-  min-width: 200px !important;
-}
-.ad-primary-btn.nav-btn span {
-  font-size: 16px;
-}
 .ad-primary-btn:before {
   position: absolute;
   height: 100%;
@@ -75,7 +68,7 @@
 .gradient-bottom {
   pointer-events: none;
   position: fixed;
-  z-index: 993;
+  z-index: 994;
   bottom: 0;
   left: 0;
   right: 0;
@@ -93,11 +86,6 @@
   width: 100px;
   display: block;
   margin: 1rem auto;
-}
-@media screen and (min-width: 550px) {
-  .ad-primary-btn.nav-btn {
-    min-width: 300px !important;
-  }
 }
 img {
   max-width: 100%;
@@ -128,11 +116,9 @@ input[type=number]::-webkit-outer-spin-button {
   position: fixed;
   bottom: 0;
   right: 0;
-  z-index: 995;
-  max-width: 200px;
 }
-.price-container a img {
-  width: 100%;
+.price-container img {
+  max-width: 100%;
 }
 .navbar {
   position: fixed;
@@ -377,7 +363,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .video-container {
   position: relative;
-  z-index: 994;
+  z-index: 995;
 }
 #partner-logo-container {
   background: url("/assets/partner/bg.jpg") no-repeat fixed;

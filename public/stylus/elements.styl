@@ -36,6 +36,12 @@
         height: 100%
         transition: .3s all
 
+    &.nav-btn
+        max-width: 250px
+        min-width: 200px !important
+        span
+            font-size: 16px
+
     &:before
         position: absolute
         height: 100%
@@ -84,3 +90,7 @@
         width: 100px
         display: block
         margin: 1rem auto
+
+@media screen and (min-width: 550px)
+    .ad-primary-btn.nav-btn
+        min-width: 300px !important
