@@ -247,10 +247,17 @@ app.post("/handwerker-registrieren", (req, res) => {
 app.get("/nsend", (req, res) => {
   const email = req.query.email; // get form information
   const type = req.query.type; // get user type
+  let topic = "Newsletter";
 
-  if (!validator.isEmail(email))
-    return res.status(500).send("Keine gültige elektronische Postadresse");
+  if (type === "Rückrufanforderung" && !validator.isMobilePhone(email))
+    return res.status(500).send("Bitte eine gültige Telefonnummer eingeben");
 
+  if (!validator.isEmail(email) && !validator.isMobilePhone(email))
+    return res.status(500).send("Keine gültigen Daten");
+
+  if (!validator.isEmail(email)) {
+    topic = "Nachricht Webseite";
+  }
   let transporter = nodemailer.createTransport({
     host: mail.host,
     port: mail.port,
@@ -266,7 +273,7 @@ app.get("/nsend", (req, res) => {
 
   // setup email data with unicode symbols
   let mailOptions = {
-    from: `"Newsletter" <${mail.absender}> - ${type}`, // sender address
+    from: `"${topic}" <${mail.absender}> - ${type}`, // sender address
     to: mail.empfaenger, // list of receivers
     subject: mail.betreff, // Subject line
     text: `Ein Benutzer hat eine Nachricht gesendet. Betreff: ${type} Erreiche ihn unter: ${email}`,

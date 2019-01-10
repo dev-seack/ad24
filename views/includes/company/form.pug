@@ -1,113 +1,123 @@
 div.container
     div.row
         p.h1.text-center.col-12.section-heading JETZT AUFTR&Auml;GE SICHERN
-        p.text-center.col-12.lead Anmeldeformular ausfüllen oder mit dem Testpaket sofort starten!
+        p.text-center.col-12.lead Hast du noch Fragen? Wir melden uns gerne bei Dir oder starte jetzt mit deinem Testpaket
 
     div.row.mt-4.mb-5
-        button#btn-vrpaysecure-modal.btn-vrpaysecure.col-12.col-sm-12.col-lg-4.btn.ad-primary-btn.ad-blue-btn.m-auto.handwerker(href="#", data-href="https://auftragsdepot24.vr-pay-secure.de/pay?tid=b1d81be4&appview=1") 
-            span Zum Abonnement
+        .newsletter-container.fullWidth
+        form.newsletter-form.col-12(action="nsend", method="post")
+            div.row
+                input(type="hidden", name="type", value="Rückrufanforderung")
+                div.input-group
+                    input.col-12.col-lg-6.offset-lg-3.form-control(type="tel", placeholder="Telefonnummer...", name="email", autocomplete="off", required)
+            div.row.mt-5
+                button.col-12.col-sm-12.col-lg-4.btn.ad-primary-btn.ad-red-btn.m-auto.kontakt
+                    span.text-uppercase Rückruf anfordern
+                button#btn-vrpaysecure-modal.btn-vrpaysecure.col-12.col-sm-12.col-lg-4.btn.ad-primary-btn.ad-blue-btn.m-auto.handwerker(href="#", data-href="https://auftragsdepot24.vr-pay-secure.de/pay?tid=b1d81be4&appview=1") 
+                    span.text-uppercase Zum Abonnement
+        
 
-    form#formDropzone.mt-5(action="/handwerker-registrieren" enctype="multipart/form-data" method="POST")
-        div.form-row
-            p.h4.col-12 Kontaktdaten
-            hr.col-12.mt-0
+    //- form#formDropzone.mt-5(action="/handwerker-registrieren" enctype="multipart/form-data" method="POST")
+    //-     div.form-row
+    //-         p.h4.col-12 Kontaktdaten
+    //-         hr.col-12.mt-0
 
-            div.form-group.col-12.col-md-8
-                label(for="inputCompanyname") Firmenname
-                input#inputCompanyname.form-control(type="text", name="companyname", required)
-            div.form-group.col-12.col-md-4
-                label(for="inputLegalform") Rechtsform
-                select(name="inputLegalform", required)#inputinputLegalform.form-control
-                    option(value="", selected='selected', disabled) Rechtsform auswählen
-                    option Natürliche Person / Einzelunternehmen
-                    option GmbH
-                    option AG
-                    option GbR
-                    option UG (haftungsbeschränkt)
-                    option EK (Einzelkaufmann) / eU (Einzelunternehmer)
-                    option eingetragener Kaufmann (e.K)
-                    option oHG, KG (einschl. GmbH & Co.KG)
-                    option Ltd.
-                    option Sonstige Rechtsform
-            div.form-group.col-12.col-md-6
-                label(for="inputAddress") Gesch&auml;ftsadresse
-                input#inputAddress.form-control(type="text", name="address", required)
-            div.form-group.col-6.col-md-3
-                label(for="inputPLZ") Postleitzahl
-                input#inputPLZ.form-control(type="number", name="plz", required)
-            div.form-group.col-6.col-md-3
-                label(for="inputCity") Ort
-                input#inputCity.form-control(type="text", name="city", disabled, required)
-            div.form-group.col-md-6.col-12
-                label(for="inputFirstname") Vorname - Ansprechpartner
-                input#inputFirstname.form-control(type="text", name="firstname", required)
-            div.form-group.col-md-6.col-12
-                label(for="inputLastname") Nachname - Ansprechpartner
-                input#inputLastname.form-control(type="text", name="lastname", required)
-            div.form-group.col-md-6.col-12
-                label(for="inputEmail") Email
-                input#inputEmail.form-control(type="email", name="email", required)
-            div.form-group.col-md-6.col-12
-                label(for="inputPhone") Telefonnummer
-                input#inputPhone.form-control(type="phone", name="phone", required)
+    //-         div.form-group.col-12.col-md-8
+    //-             label(for="inputCompanyname") Firmenname
+    //-             input#inputCompanyname.form-control(type="text", name="companyname", required)
+    //-         div.form-group.col-12.col-md-4
+    //-             label(for="inputLegalform") Rechtsform
+    //-             select(name="inputLegalform", required)#inputinputLegalform.form-control
+    //-                 option(value="", selected='selected', disabled) Rechtsform auswählen
+    //-                 option Natürliche Person / Einzelunternehmen
+    //-                 option GmbH
+    //-                 option AG
+    //-                 option GbR
+    //-                 option UG (haftungsbeschränkt)
+    //-                 option EK (Einzelkaufmann) / eU (Einzelunternehmer)
+    //-                 option eingetragener Kaufmann (e.K)
+    //-                 option oHG, KG (einschl. GmbH & Co.KG)
+    //-                 option Ltd.
+    //-                 option Sonstige Rechtsform
+    //-         div.form-group.col-12.col-md-6
+    //-             label(for="inputAddress") Gesch&auml;ftsadresse
+    //-             input#inputAddress.form-control(type="text", name="address", required)
+    //-         div.form-group.col-6.col-md-3
+    //-             label(for="inputPLZ") Postleitzahl
+    //-             input#inputPLZ.form-control(type="number", name="plz", required)
+    //-         div.form-group.col-6.col-md-3
+    //-             label(for="inputCity") Ort
+    //-             input#inputCity.form-control(type="text", name="city", disabled, required)
+    //-         div.form-group.col-md-6.col-12
+    //-             label(for="inputFirstname") Vorname - Ansprechpartner
+    //-             input#inputFirstname.form-control(type="text", name="firstname", required)
+    //-         div.form-group.col-md-6.col-12
+    //-             label(for="inputLastname") Nachname - Ansprechpartner
+    //-             input#inputLastname.form-control(type="text", name="lastname", required)
+    //-         div.form-group.col-md-6.col-12
+    //-             label(for="inputEmail") Email
+    //-             input#inputEmail.form-control(type="email", name="email", required)
+    //-         div.form-group.col-md-6.col-12
+    //-             label(for="inputPhone") Telefonnummer
+    //-             input#inputPhone.form-control(type="phone", name="phone", required)
 
-        div.form-row.mt-5
-            p.h4.col-12 Aufgabengebiet
-            hr.col-12.mt-0
-            div.form-group.col-12
-                label(for="inputJob") Handwerksbeschreibung
-                select(name="inputJob", required)#inputJob.form-control
-                    option(value="", selected="selected") Handwerksbeschreibung auswählen
-                    option Abbrucharbeiten 
-                    option Baggerarbeiten 
-                    option Bautrocknungsgewerbe
-                    option Bausanierung
-                    option Bodenlegehandwerk
-                    option Dachdeckerhandwerk
-                    option Einbau von genormten Fertigteilen
-                    option Eisenflechter                    
-                    option Elektrotechnik
-                    option Estrichleger
-                    option Fliesen- Platten- und Mosaikleger
-                    option Fugerbetrieb
-                    option Garten- Landschaftsbau
-                    option Gärtner
-                    option Gebäudereinigung
-                    option Gerüstbau       
-                    option Hausmeisterservice             
-                    option Holz- und Bautenschutz
-                    option Heizung- und Sanitär
-                    option Klempner
-                    option Klimatechnik
-                    option Maler- und Lackierer
-                    option Maurer- und Betonhandwerk
-                    option Parkettlegerhandwerk
-                    option Pflasterbau
-                    option Raumausstatter
-                    option Rolladen- und Jalousienbau
-                    option Schreiner
-                    option Straßenbau
-                    option Stukkateur
-                    option Teppichreiniger
-                    option Tiefbau
-                    option Tischler
-                    option Trockenbau, Akustikbau
-                    option Zimmererhandwerk   
-                    option Sonstiges Handwerk                                     
+    //-     div.form-row.mt-5
+    //-         p.h4.col-12 Aufgabengebiet
+    //-         hr.col-12.mt-0
+    //-         div.form-group.col-12
+    //-             label(for="inputJob") Handwerksbeschreibung
+    //-             select(name="inputJob", required)#inputJob.form-control
+    //-                 option(value="", selected="selected") Handwerksbeschreibung auswählen
+    //-                 option Abbrucharbeiten 
+    //-                 option Baggerarbeiten 
+    //-                 option Bautrocknungsgewerbe
+    //-                 option Bausanierung
+    //-                 option Bodenlegehandwerk
+    //-                 option Dachdeckerhandwerk
+    //-                 option Einbau von genormten Fertigteilen
+    //-                 option Eisenflechter                    
+    //-                 option Elektrotechnik
+    //-                 option Estrichleger
+    //-                 option Fliesen- Platten- und Mosaikleger
+    //-                 option Fugerbetrieb
+    //-                 option Garten- Landschaftsbau
+    //-                 option Gärtner
+    //-                 option Gebäudereinigung
+    //-                 option Gerüstbau       
+    //-                 option Hausmeisterservice             
+    //-                 option Holz- und Bautenschutz
+    //-                 option Heizung- und Sanitär
+    //-                 option Klempner
+    //-                 option Klimatechnik
+    //-                 option Maler- und Lackierer
+    //-                 option Maurer- und Betonhandwerk
+    //-                 option Parkettlegerhandwerk
+    //-                 option Pflasterbau
+    //-                 option Raumausstatter
+    //-                 option Rolladen- und Jalousienbau
+    //-                 option Schreiner
+    //-                 option Straßenbau
+    //-                 option Stukkateur
+    //-                 option Teppichreiniger
+    //-                 option Tiefbau
+    //-                 option Tischler
+    //-                 option Trockenbau, Akustikbau
+    //-                 option Zimmererhandwerk   
+    //-                 option Sonstiges Handwerk                                     
             
-        hr
-        div.form-row
-            div.col-12.alert.alert-warning(role='alert')
-                p.p-2.pb-0 
-                    strong Wichtiger Hinweis zur Nutzung von Auftragsdepot24
-                    p.p-2.text-justify Damit Sie Auftragsdepot24 nutzen k&ouml;nnen, m&uuml;ssen Sie eine Kopie Ihres aktuellen Gewerbescheins oder Handelsregisterauszugs einreichen. F&uuml;r qualifizierungspflichtige Ausschreibungen ben&ouml;tigen wir zus&auml;tzlich einen aktuellen Nachweis Ihrer Eintragung in die HWK, IHK oder &auml;hnliche Eintragungen. 
+    //-     hr
+    //-     div.form-row
+    //-         div.col-12.alert.alert-warning(role='alert')
+    //-             p.p-2.pb-0 
+    //-                 strong Wichtiger Hinweis zur Nutzung von Auftragsdepot24
+    //-                 p.p-2.text-justify Damit Sie Auftragsdepot24 nutzen k&ouml;nnen, m&uuml;ssen Sie eine Kopie Ihres aktuellen Gewerbescheins oder Handelsregisterauszugs einreichen. F&uuml;r qualifizierungspflichtige Ausschreibungen ben&ouml;tigen wir zus&auml;tzlich einen aktuellen Nachweis Ihrer Eintragung in die HWK, IHK oder &auml;hnliche Eintragungen. 
             
-            div#companyDropzone.dropzone.col-12
-        hr
-        div.form-row
-            div.form-check
-                input#checkbox.form-check-input(type="checkbox", required)
-                label.form-check-label(for="checkbox") Hiermit best&auml;tige ich, dass ich die Datenschutzerkl&auml;rung gelesen habe und den AGB zustimme
-        div.row.mt-5.pt-5.pl-3.pr-3
-            button.col-12.col-sm-12.col-md-4.btn.ad-primary-btn.ad-red-btn.m-md-auto.auftrag.mb-5(type="submit") 
-                span Anfrage absenden
+    //-         div#companyDropzone.dropzone.col-12
+    //-     hr
+    //-     div.form-row
+    //-         div.form-check
+    //-             input#checkbox.form-check-input(type="checkbox", required)
+    //-             label.form-check-label(for="checkbox") Hiermit best&auml;tige ich, dass ich die Datenschutzerkl&auml;rung gelesen habe und den AGB zustimme
+    //-     div.row.mt-5.pt-5.pl-3.pr-3
+    //-         button.col-12.col-sm-12.col-md-4.btn.ad-primary-btn.ad-red-btn.m-md-auto.auftrag.mb-5(type="submit") 
+    //-             span Anfrage absenden
