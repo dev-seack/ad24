@@ -2,8 +2,13 @@
     background: url('/assets/icons/werkzeug_bg.svg') center center no-repeat;
     background-size: contain
 
+    .carousel .carousel-inner
+        margin: 0 30px
+        width: auto
+
 .carousel-control-next,.carousel-control-prev
     opacity: 1
+    width: 30px !important
 .carousel-control-next-icon
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%232d619b' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E")
 .carousel-control-prev-icon
@@ -48,17 +53,4 @@
             background-size: contain
         .star-full
             background: url('/assets/testimonials/star-full.svg') center center no-repeat
-            background-size: contain
-
-    .arrows        
-        & > *
-            position: absolute
-            border-top: solid #333 3px
-            border-right: solid #333 3px
-            width: 30px
-            height: 30px
-            display: inline-block
-        .arrow-right
-            right: 50px
-        .arrow-left
-            left: 50px
+            background-size: contain    
