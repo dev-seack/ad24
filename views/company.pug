@@ -2,7 +2,8 @@ extends ./layout
 
 block append script 
   script(src="/js/dropzone.min.js")
-  script(src="https://media.vr-pay-secure.de/modal/v1/modal.min.js?v=1.4")  
+  //- script(src="https://media.vr-pay-secure.de/modal/v1/modal.min.js?v=1.4")  
+  script(src="/js/vr-pay-secure/modal.js")
   script.
     jQuery("#btn-vrpaysecure-modal").vrpaysecureModal({
       shown: function(){

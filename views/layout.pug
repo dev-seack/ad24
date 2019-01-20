@@ -7,9 +7,9 @@ html(lang="de")
         title Auftragsdepot24 - #{title}
         block css
             link(rel="stylesheet", href="/css/bootstrap.min.css", type="text/css")
-            link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.5.0/css/all.css', integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU', crossorigin='anonymous', type="text/css")
             link(href="/css/iziToast.min.css" rel="stylesheet", type="text/css")
             link(href="/css/all.css" rel="stylesheet", type="text/css")
+            link(href="/css/fontawesome-free/css/all.css" rel="stylesheet", type="text/css")
     body
         block content
         block gradient-bottom
@@ -17,7 +17,7 @@ html(lang="de")
             include includes/footer
         block script
             //- script(src="/js/jquery.js")
-            script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")
+            script(src="/js/jquery/jquery.js")
             script(src="/js/popper.js")
             script(src="/js/bootstrap.js")
             script(src="/js/bundle.js")
