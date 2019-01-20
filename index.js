@@ -3,13 +3,12 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 const join = require("path").join;
-const excel = require("excel4node");
-const nib = require("nib");
 const validator = require("validator");
 const moment = require("moment");
 const formidable = require("formidable");
-const util = require("util");
 const publicDir = join(__dirname, "/public");
+const minify = require("express-minify");
+const compression = require("compression");
 
 const { Person, Company } = require("./modules/centralstation");
 
@@ -32,6 +31,8 @@ app.set("view engine", "pug");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.use(compression());
+app.use(minify());
 app.use(express.static(publicDir));
 
 // Pages
@@ -159,7 +160,7 @@ app.post("/person-registrieren", (req, res) => {
         }
       })
       .catch((e) => {
-        res.status(500).send(e);
+        res.status(500).send("Fehler beim erstellen Ihrer Anfrage.");
       });
   });
 });
@@ -227,8 +228,6 @@ app.post("/handwerker-registrieren", (req, res) => {
     const attachments = attachmentProps.map(function(key) {
       return files[key];
     });
-
-    console.log("before creating: " + JSON.stringify(data, undefined, 2));
 
     var company = new Company();
     company

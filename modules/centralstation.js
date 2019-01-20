@@ -75,9 +75,7 @@ class Data {
           };
 
           await axios.post(this.attachment_url, attachment_obj);
-        } catch (e) {
-          console.log(e);
-        }
+        } catch (e) {}
       }
     }
   }

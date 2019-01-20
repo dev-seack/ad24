@@ -79,7 +79,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  width: 100vw;
+  width: 100%;
   height: 100px;
   background-image: linear-gradient(rgba(255,255,255,0), #fff);
 }
@@ -195,17 +195,17 @@ a:focus {
   }
 }
 .landing-container {
-  background: url("/assets/landing/bg.jpg") no-repeat center fixed;
+  background: url("/assets/landing/bg.jpg") no-repeat center fixed;
   background-size: cover;
   position: relative;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   z-index: 1;
   padding-top: 70px;
 }
 .landing-container .landing-responsive-overlay {
   position: absolute;
-  width: 100vw;
+  width: 100%;
   top: 70px;
   bottom: 0;
   background: rgba(255,255,255,0.6);
