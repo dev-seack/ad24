@@ -403,6 +403,18 @@ footer {
 footer .lead {
   letter-spacing: 4px;
 }
+footer .footer-header.left p,
+footer .footer-header.right p {
+  text-align: center;
+}
+@media screen and (min-width: 750px) {
+  .footer-header.left p {
+    text-align: left !important;
+  }
+  .footer-header.right p {
+    text-align: right !important;
+  }
+}
 .dropzone {
   border: 3px solid #ced4da !important;
   border-radius: 0.25rem;
