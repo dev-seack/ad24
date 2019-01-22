@@ -3,8 +3,10 @@ mixin newsletter(type, btnName, placeholder)
         form.newsletter-form(action="nsend", method="post")
             div.row
                 input(type="hidden", name="type", value=type)
-                div.input-group
+                div.input-group.col-12
                     input.col-12.col-lg-6.offset-lg-3.form-control(type="email", placeholder=placeholder, name="email", required)
             div.row.mt-5
-                button.col-12.col-sm-12.col-lg-4.btn.ad-primary-btn.ad-red-btn.m-auto.kontakt
+                button.col-12.col-sm-12.col-lg-4.btn.ad-primary-btn.ad-blue-btn.ml-auto.mr-auto.kontakt.mb-4
                     span.text-uppercase= btnName
+                a.col-12.btn.ad-primary-btn.ad-red-btn.handwerker.ml-auto.mr-auto.mb-4(href="/handwerker-finden") 
+                    span Handwerker suchen

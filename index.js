@@ -160,7 +160,7 @@ app.post("/person-registrieren", (req, res) => {
         }
       })
       .catch((e) => {
-        res.status(500).send("Fehler beim erstellen Ihrer Anfrage.");
+        res.status(500).send("Fehler beim erstellen Deiner Anfrage.");
       });
   });
 });

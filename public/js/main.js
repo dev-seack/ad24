@@ -54,7 +54,7 @@ $(function() {
         // toast - success
         iziToast.success({
           title: "Erfolgreich!",
-          message: "Vielen Dank für Ihre Nachricht",
+          message: "Vielen Dank für Deine Nachricht",
           position: "bottomCenter"
         });
       })
