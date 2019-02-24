@@ -147,20 +147,72 @@ app.post("/person-registrieren", (req, res) => {
       return files[key];
     });
 
-    var person = new Person();
-    person
-      .addPerson(data, attachments)
-      .then((response) => {
-        if (response.Person) {
-          res
-            .status(200)
-            .send({ Person: response.Person, Protocol: response.Protocol });
-        } else {
-          res.status(404).send(response.message);
+    // var person = new Person();
+    // person
+    //   .addPerson(data, attachments)
+    //   .then((response) => {
+    //     if (response.Person) {
+    //       res
+    //         .status(200)
+    //         .send({ Person: response.Person, Protocol: response.Protocol });
+    //     } else {
+    //       res.status(404).send(response.message);
+    //     }
+    //   })
+    //   .catch((e) => {
+    //     res.status(500).send("Fehler beim erstellen Deiner Anfrage.");
+    //   });
+      let transporter = nodemailer.createTransport({
+        host: mail.host,
+        port: mail.port,
+        secure: false, // true for 465, false for other ports
+        auth: {
+          user: mail.absender,
+          pass: mail.passwort
+        },
+        tls: {
+          rejectUnauthorized: false // just for local environment
         }
-      })
-      .catch((e) => {
-        res.status(500).send("Fehler beim erstellen Deiner Anfrage.");
+      });
+    
+      // setup email data with unicode symbols
+      let mailOptions = {
+        from: `"${fields.firstname || ""} ${fields.lastname || ""}" <${mail.absender}>`, // sender address
+        to: mail.empfaenger, // list of receivers
+        subject: 'Auftragsanfrage', // Subject line
+        attachments: attachments.map(f => ({ filename: f.name, path: f.path })),
+        //text: `Ein Benutzer hat eine Nachricht gesendet. Betreff: ${type} Erreiche ihn unter: ${email}`,
+        html: `<p>Neue Auftragsanfrage von "${fields.firstname || ""} ${fields.lastname || ""}":</p>
+                <dl>
+                  <dt>Name</dt>
+                  <dd>${fields.firstname || ""} ${fields.lastname || ""}</dd>
+                  <dt>Email</dt>
+                  <dd>${fields.email || "Nicht angegeben"}</dd>
+                  <dt>Tel.</dt>
+                  <dd>${fields.phone || "Nicht angegeben"}</dd>
+                  <dt>Adresse</dt>
+                  <dd>${fields.street || ""} ${fields.plz || ""} ${fields.city || ""}</dd>
+                  <dt>Kategorie</dt>
+                  <dd>${fields.mainCat || "Nicht angegeben"} ${fields.secCat || ""}</dd>
+                  <dt>Budget</dt>
+                  <dd>${fields.budget || "Nicht angegeben"}</dd>
+                  <dt>Zeitraum - Von</dt>
+                  <dd>${fields.dateFrom || "Nicht angegeben"}</dd>
+                  <dt>Zeitraum - Bis</dt>
+                  <dd>${fields.dateTo || "Nicht angegeben"}</dd>
+                  <dt>Auftragsbeschreibung</dt>
+                  <dd>${fields.description || "Nicht angegeben"}</dd>
+                </dl>`
+      };
+    
+      // send mail with defined transport object
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          res.status(500).send(error);
+        }
+    
+        // rerender contactform with successmessage
+        res.status(200).send("Erfolg");
       });
   });
 });
@@ -301,6 +353,6 @@ app.get("/nsend", (req, res) => {
 /* jshint ignore:start */
 // listen
 app.listen(PORT, () => {
-  console.log(`Server is running on ${PORT}`);
+  console.log(`Server is running on ${PORT}`);
 });
 /* jshint ignore:end */
